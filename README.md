@@ -30,5 +30,8 @@ Everything in the entries comes from the existing log, sessions, writing and tim
 - Reveals, bloom and parallax are plain CSS plus a small IntersectionObserver. Nothing is added when "reduce motion" is on.
 - Botanical artwork is in `assets/flora/` (soft-focus branches, generated artwork). Swap in your own cherry blossom photography with the same file names and transparent backgrounds.
 
+## Image attribution
+- Writing background: [Pink cherry blossom by Magic Momentz](https://www.flickr.com/photos/94861633@N04/15806856444), licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). The image is cropped and softened.
+
 ## Deploy on Netlify
 Drag the folder (or the zip) onto app.netlify.com/drop. `_headers` sets a one-day cache for images.
