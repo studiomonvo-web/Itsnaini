@@ -1,6 +1,6 @@
 # Itsnaini Nurfaizah, portfolio site
 
-Open `index.html` in a browser. No build step. Cormorant Garamond and DM Sans are bundled locally in `assets/fonts`.
+Open `index.html` in a browser. No build step. Bodoni Moda and DM Sans are bundled locally in `assets/fonts`.
 
 ## Fill in before you share the link
 Open `index.html`, search for `const PROFILE` near the bottom, and fill in `email` and `linkedin`.

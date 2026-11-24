@@ -10,21 +10,21 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#FEFCFB">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'%3E%3Cg%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(0)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(72)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(144)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(216)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(288)'/%3E%3Ccircle r='3' fill='%23D9AE62'/%3E%3C/g%3E%3C/svg%3E">
-<link rel="preload" href="assets/fonts/cormorant-garamond-regular.ttf?v=78081d4" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="assets/fonts/bodoni-moda-regular.ttf?v=bb1da42-editorial" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/dm-sans-regular.ttf?v=78081d4" as="font" type="font/ttf" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Itsnaini Nurfaizah","jobTitle":"Training Coordinator","worksFor":{"@type":"Organization","name":"B/NDL Studios"},"address":{"@type":"PostalAddress","addressLocality":"Bandung","addressCountry":"ID"},"sameAs":["https://medium.com/@itsnaininurfaizah21"]}</script>
 <script>(function(d){if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("m")})(document.documentElement)</script>
 <style>
 @font-face{
-  font-family:"Cormorant Garamond";
-  src:url("assets/fonts/cormorant-garamond-regular.ttf?v=78081d4") format("truetype");
+  font-family:"Bodoni Moda";
+  src:url("assets/fonts/bodoni-moda-regular.ttf?v=bb1da42-editorial") format("truetype");
   font-style:normal;
   font-weight:400;
   font-display:swap;
 }
 @font-face{
-  font-family:"Cormorant Garamond";
-  src:url("assets/fonts/cormorant-garamond-italic.ttf?v=78081d4") format("truetype");
+  font-family:"Bodoni Moda";
+  src:url("assets/fonts/bodoni-moda-italic.ttf?v=bb1da42-editorial") format("truetype");
   font-style:italic;
   font-weight:400;
   font-display:swap;
@@ -47,7 +47,7 @@
   --paper:#FEFCFB; --petal:#FBEEF1; --petal-2:#F6DCE3; --lilac:#EFE8F6; --sage-wash:#E8F0EA;
   --ink:#2B1B2E; --ink-2:#463650; --mute:#5E4F64; --line:#EADDE2;
   --rose:#C4647F; --rose-deep:#A23E5D; --sage:#6F8F7A; --sage-deep:#3F5E4B; --gold:#D9AE62;
-  --serif:"Cormorant Garamond","Times New Roman",serif;
+  --serif:"Bodoni Moda","Times New Roman",serif;
   --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --wrap:min(1200px,100% - clamp(40px,8vw,96px));
 }
@@ -102,6 +102,8 @@ p{max-width:62ch}
 .arch-cap{margin-top:22px;font-size:.92rem;color:var(--mute);max-width:36ch}
 .wash{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:-1}
 @media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.arch-wrap{width:min(78%,400px);margin-top:12px}.hero-flora{left:-8%;width:116%}}
+.hero .wrap>div:first-child{min-width:0}
+.hero h1{width:100%;max-width:100%}.arch-wrap{width:min(78%,400px);margin-top:12px}.hero-flora{left:-8%;width:116%}}
 
 /* hero entrance: one orchestrated moment */
 .hero-flora .stem{stroke-dasharray:1;stroke-dashoffset:1}
@@ -393,7 +395,7 @@ footer{background:none}
 
 /* ---------- distinctive editorial typography ---------- */
 :root{
-  --serif:"Cormorant Garamond","Times New Roman",serif;
+  --serif:"Bodoni Moda","Times New Roman",serif;
   --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 body{
@@ -432,17 +434,17 @@ h1,h2,h3{font-weight:400}
 .nav ul a{font-weight:500}
 .hero .pill{letter-spacing:.09em}
 .hero h1{
-  font-size:clamp(3.25rem,7.1vw,6.9rem);
+  font-size:clamp(3.25rem,5.9vw,5.8rem);
   line-height:.88;
-  letter-spacing:-.055em;
+  letter-spacing:-.025em;
   font-weight:400;
-  max-width:11ch;
+  max-width:none;
   text-wrap:balance;
 }
 .hero h1 .in3{
-  margin-left:clamp(18px,8vw,132px);
+  margin-left:clamp(12px,4vw,64px);
   font-weight:400;
-  letter-spacing:-.045em;
+  letter-spacing:-.018em;
   line-height:.9;
 }
 .hero .lede{font-size:1rem;line-height:1.72;letter-spacing:-.012em}
@@ -450,12 +452,12 @@ h1,h2,h3{font-weight:400}
 .split>header h2{
   font-size:clamp(2.8rem,5.4vw,5.1rem);
   line-height:.9;
-  letter-spacing:-.045em;
+  letter-spacing:-.025em;
   text-wrap:balance;
 }
 .record dt,.log .o,.step h3,.case-head h3{
   font-weight:400;
-  letter-spacing:-.025em;
+  letter-spacing:-.012em;
   line-height:1.02;
 }
 .log .o em{
@@ -486,20 +488,20 @@ h1,h2,h3{font-weight:400}
 .essay h3{
   max-width:12ch;
   line-height:.92;
-  letter-spacing:-.05em;
+  letter-spacing:-.025em;
   text-wrap:balance;
 }
 .essay .src{font-size:.9rem}
 .clock b{
   font-size:clamp(2.7rem,5.2vw,4.5rem);
   line-height:.9;
-  letter-spacing:-.055em;
+  letter-spacing:-.035em;
   font-variant-numeric:lining-nums tabular-nums;
 }
 .contact h2{
   font-size:clamp(3.2rem,7.8vw,7.5rem);
   line-height:.86;
-  letter-spacing:-.055em;
+  letter-spacing:-.035em;
   text-wrap:balance;
 }
 footer{letter-spacing:.055em}
@@ -540,6 +542,65 @@ footer{letter-spacing:.055em}
   #cases-list .case:nth-child(even) .case-head{grid-column:1;grid-row:auto;text-align:right}
   #cases-list .case:nth-child(even) .case-body{grid-column:1;grid-row:auto}
   #cases-list .case:nth-child(even) .skills{grid-column:1;grid-row:auto}
+}
+
+/* Type and composition deliberately vary by editorial section. */
+#log{padding-top:clamp(44px,6vw,82px)}
+#log .split{display:block}
+#log .split>header .sticky{
+  position:static;
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(250px,.65fr);
+  gap:20px clamp(36px,8vw,128px);
+  align-items:end;
+  margin-bottom:clamp(38px,6vw,76px);
+  padding-bottom:30px;
+  border-bottom:1px solid var(--ink);
+}
+#log .split>header h2{
+  grid-column:1;
+  max-width:11ch;
+  margin:0;
+  font-size:clamp(3.5rem,6.5vw,6.8rem);
+  line-height:.84;
+  letter-spacing:-.04em;
+}
+#log .split>header p{
+  grid-column:2;
+  justify-self:end;
+  max-width:34ch;
+  font-size:.94rem;
+  line-height:1.75;
+}
+#log .split>div{padding-left:clamp(0px,5vw,76px)}
+#how{padding-block:clamp(92px,13vw,172px)}
+#how .split>header h2{max-width:8ch;font-size:clamp(3rem,5.4vw,5.7rem);line-height:.86}
+#how .sticky,#hours .sticky{top:16vh}
+#cases .sticky{position:static}
+#cases .split>header h2{max-width:8ch;font-size:clamp(3.2rem,5.6vw,5.8rem)}
+#sessions .split>header h2{max-width:8ch;font-size:clamp(3.4rem,5.8vw,6.2rem);line-height:.84}
+#writing{padding-block:clamp(92px,13vw,168px)}
+#writing .split>header h2{font-size:clamp(4.5rem,9vw,9rem);line-height:.76;letter-spacing:-.055em;font-style:italic}
+#writing .split>p{max-width:27ch;justify-self:end;align-self:end}
+#hours .split>header h2{max-width:8ch;font-size:clamp(3.2rem,5.2vw,5.4rem);line-height:.86}
+#cases-list .case:nth-child(even){margin-left:clamp(0px,5vw,76px)}
+#cases-list .case:nth-child(odd){margin-right:clamp(0px,5vw,76px)}
+@media(max-width:860px){
+  #log .split>header .sticky{grid-template-columns:1fr;gap:18px;padding-bottom:24px}
+  #log .split>header h2{grid-column:1;max-width:11ch;font-size:clamp(3.4rem,12vw,5.8rem)}
+  #log .split>header p{grid-column:1;justify-self:start}
+  #log .split>div{padding-left:0}
+  #writing .split>p{justify-self:start}
+  #cases-list .case:nth-child(even),#cases-list .case:nth-child(odd){margin-inline:0}
+}
+.m #log .split>header [data-r]{clip-path:none!important;opacity:1!important;animation:none!important}
+@media(max-width:860px){.hero h1{font-size:clamp(3rem,9vw,5.5rem)}}
+@media(max-width:480px){
+  .hero h1{font-size:clamp(2.35rem,10vw,3.5rem)}
+  .hero .wrap>div:first-child>a.pill{max-width:100%;white-space:normal;line-height:1.5;align-items:flex-start}
+  .nav .wrap{gap:12px}
+  .brand{font-size:1.05rem}
+  .brand span{white-space:nowrap}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
