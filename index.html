@@ -911,6 +911,13 @@ footer .wrap{justify-content:center;text-align:center;gap:10px 24px;padding-top:
 #writing .photo-credit a{text-underline-offset:3px}
 @media(max-width:760px){#writing .photo-credit{text-align:center}}
 @media(prefers-reduced-motion:no-preference){.m #writing.is-revealed::before{clip-path:ellipse(150% 145% at 52% 50%)}}
+.m .hero h1.typewriter{clip-path:none}
+.m .hero h1.typewriter .type-word{white-space:nowrap}
+.m .hero h1.typewriter .type-char{opacity:0}
+.m .motion-ready .hero h1.typewriter .type-char.is-typed{animation:none;opacity:1}
+.m .motion-ready .hero h1.typewriter{animation:none}
+.m .motion-ready .hero h1.typewriter .type-char{animation:hero-typewriter 1ms steps(1,end) var(--type-delay) both}
+@keyframes hero-typewriter{from{opacity:0}to{opacity:1}}
 body{
   background-color:var(--paper);
   background-image:var(--grain),linear-gradient(rgba(248,250,252,.82),rgba(248,250,252,.82)),url(assets/flora/pink-cherry-blossom.jpg);
@@ -1346,6 +1353,44 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
     const caps = (c.capabilities || []).length ? `<ul class="skills" aria-label="Capabilities shown">${c.capabilities.map(x => `<li>${e(x)}</li>`).join('')}</ul>` : '';
     return `<article class="case" id="case-${e(c.id)}" aria-labelledby="h-${e(c.id)}"><div class="case-head"><h3 id="h-${e(c.id)}">${e(c.programme)}</h3>${meta || ''}</div><dl class="case-body">${FIELDS.map(f => row(f[1], c[f[0]], f[2])).join('')}</dl>${caps}</article>`;
   }).join('');
+})();
+
+/* A brief typewriter reveal is reserved for the main headline. */
+(() => {
+  if (reduce || !document.documentElement.classList.contains('m')) return;
+  const heading = $('.hero h1');
+  if (!heading) return;
+  heading.setAttribute('aria-label', 'I make learning programmes work, beyond the classroom.');
+  heading.addEventListener('animationend', event => {
+    if (event.target.matches('.type-char')) event.target.classList.add('is-typed');
+  });
+  const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  let order = 0;
+  nodes.forEach(node => {
+    const fragment = document.createDocumentFragment();
+    (node.textContent.match(/\s+|[^\s]+/g) || []).forEach(part => {
+      if (/^\s+$/.test(part)) {
+        fragment.append(document.createTextNode(part));
+        return;
+      }
+      const word = document.createElement('span');
+      word.className = 'type-word';
+      word.setAttribute('aria-hidden', 'true');
+      for (const character of part) {
+        const glyph = document.createElement('span');
+        glyph.className = 'type-char';
+        glyph.style.setProperty('--type-delay', `${80 + order * 24}ms`);
+        glyph.textContent = character;
+        word.append(glyph);
+        order += 1;
+      }
+      fragment.append(word);
+    });
+    node.replaceWith(fragment);
+  });
+  heading.classList.add('typewriter');
 })();
 
 /* editorial motion: reveals only, CSS does the animating */
