@@ -104,8 +104,10 @@ p{max-width:62ch}
 @media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.arch-wrap{width:min(78%,400px);margin-top:12px}.hero-flora{left:-8%;width:116%}}
 
 /* hero entrance: one orchestrated moment */
-.hero-flora .stem{stroke-dasharray:1;stroke-dashoffset:1;animation:draw var(--dur,2.2s) cubic-bezier(.35,.1,.2,1) var(--d,0s) forwards}
-.hero-flora .bloom{opacity:0;transform-box:fill-box;transform-origin:50% 100%;animation:bloom .9s cubic-bezier(.2,.8,.2,1) var(--d,0s) forwards}
+.hero-flora .stem{stroke-dasharray:1;stroke-dashoffset:1}
+.hero-flora .bloom{opacity:0;transform-box:fill-box;transform-origin:50% 100%}
+.motion-ready .hero-flora .stem{animation:draw var(--dur,2.2s) cubic-bezier(.35,.1,.2,1) var(--d,0s) forwards}
+.motion-ready .hero-flora .bloom{animation:bloom .9s cubic-bezier(.2,.8,.2,1) var(--d,0s) forwards}
 .hero-flora .petal-fall{opacity:0;animation:fall 5s ease-in var(--d,2s) infinite}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes bloom{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
@@ -265,19 +267,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-bet
 @keyframes rise{from{opacity:0;translate:0 var(--rise,16px)}to{opacity:1;translate:0 0}}
 @keyframes bloomIn{from{opacity:0;scale:.94}to{opacity:1;scale:1}}
 @keyframes nodeIn{from{opacity:0;scale:.5;rotate:-24deg}to{opacity:1;scale:1;rotate:0}}
-@keyframes drift{from{transform:translate3d(0,0,0) rotate(0)}to{transform:translate3d(0,-6px,0) rotate(.5deg)}}
 @keyframes par{from{translate:0 var(--p0,14px)}to{translate:0 var(--p1,-14px)}}
 .m [data-r],.m [data-b]{opacity:0}
 .m [data-r].in{opacity:1;animation:rise .9s var(--ease) var(--rd,0s) backwards}
 .m [data-b]{transform-origin:50% 100%}
 .m [data-b].in{opacity:1;animation:bloomIn 1.5s var(--ease) backwards}
-.m .bouquet.in,.m .med-art.in{animation:bloomIn 1.5s var(--ease) backwards,drift 13s ease-in-out 1.5s infinite alternate}
+.m .bouquet.in,.m .med-art.in{animation:bloomIn 1.5s var(--ease) backwards}
 .m .step .node{transform-origin:50% 50%}
 .m .step.in .node{animation:nodeIn 1.1s var(--ease) calc(var(--rd,0s) + .2s) backwards}
-.m .hero-flora{animation:drift 16s ease-in-out 3.2s infinite alternate}
 @supports (animation-timeline:view()){@media(min-width:721px){
-  .m .hero-flora{animation:drift 16s ease-in-out 3.2s infinite alternate,par 1ms linear both;animation-timeline:auto,scroll(root);animation-range:normal,0px 90vh;--p0:0px;--p1:34px}
-  .m .bouquet.in,.m .med-art.in{animation:bloomIn 1.5s var(--ease) backwards,drift 13s ease-in-out 1.5s infinite alternate,par 1ms linear both;animation-timeline:auto,auto,view();animation-range:normal,normal,cover 0% cover 100%}
+  .m .hero-flora{animation:par 1ms linear both;animation-timeline:scroll(root);animation-range:0px 90vh;--p0:0px;--p1:34px}
+  .m .bouquet.in,.m .med-art.in{animation:bloomIn 1.5s var(--ease) backwards,par 1ms linear both;animation-timeline:auto,view();animation-range:normal,cover 0% cover 100%}
 }}
 @media(max-width:720px){:root{--rise:10px}.m .bouquet.in,.m .med-art.in{animation:bloomIn 1.5s var(--ease) backwards}.m .hero-flora{animation:none}}
 @media print{.m [data-r],.m [data-b]{opacity:1!important}#petals{display:none}}
@@ -381,7 +381,7 @@ section::before,.hero::before{content:"";position:absolute;pointer-events:none;z
 .bouquet{display:none}
 .btn{border-radius:0}.btn.solid:hover{box-shadow:none}
 footer{background:none}
-/* motion: image reveals and slow background drift */
+/* motion: image reveals and scroll-linked floral depth */
 @keyframes wipe{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
 .m .arch{animation:wipe 1.7s var(--ease) .15s backwards}
 .m .hero-flora{opacity:.9}
@@ -578,7 +578,7 @@ footer{letter-spacing:.055em}
 }
 .intro.is-entering{
   clip-path:circle(150% at 50% 50%);
-  transition:clip-path 1.35s cubic-bezier(.7,0,.2,1),opacity .8s .55s;
+  transition:clip-path .72s cubic-bezier(.7,0,.2,1),opacity .65s,visibility 0s .72s;
 }
 .intro.is-open{
   clip-path:circle(0 at 50% 50%);
@@ -615,6 +615,35 @@ footer{letter-spacing:.055em}
   transform:translate3d(-50%,-50%,0);
   transition:width .35s,height .35s,opacity .25s,border-color .25s;
 }
+.track{animation-play-state:paused}
+.track.is-active:not(:hover){animation-play-state:running}
+.m #how::before,.m #cases::before,.m #writing::before,.m .contact::before{
+  clip-path:ellipse(0 0 at 78% 12%);
+  transition:clip-path 1.15s cubic-bezier(.7,0,.2,1);
+}
+.flora-reveal.is-revealed::before{clip-path:ellipse(150% 145% at 52% 50%)}
+.page-wipe{
+  position:fixed;
+  inset:0;
+  z-index:900;
+  pointer-events:none;
+  background:rgba(246,220,227,.96);
+  clip-path:circle(0 at var(--wipe-x,50%) var(--wipe-y,50%));
+  transition:clip-path .46s cubic-bezier(.76,0,.24,1);
+}
+.page-wipe.is-active{clip-path:circle(150vmax at var(--wipe-x,50%) var(--wipe-y,50%))}
+.m .hero h1,.m .hero .lede{
+  clip-path:inset(0 0 100% 0);
+  opacity:1;
+}
+.m .motion-ready .hero h1{animation:kinetic-reveal 1.05s cubic-bezier(.76,0,.24,1) .1s both}
+.m .motion-ready .hero .lede{animation:kinetic-reveal .8s cubic-bezier(.76,0,.24,1) .42s both}
+.m .split>header h2[data-r]{clip-path:inset(0 0 100% 0);opacity:1}
+.m .motion-ready .split>header h2[data-r].in{animation:kinetic-reveal .85s cubic-bezier(.76,0,.24,1) var(--rd,0s) both}
+@keyframes kinetic-reveal{to{clip-path:inset(0)}}
+.shot img{transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .65s,clip-path .65s}
+.shot:hover img{transform:scale(1.035) skewX(-.35deg);filter:saturate(1.06) contrast(1.015);clip-path:polygon(0 1%,22% 0,48% 1%,76% 0,100% 1%,99% 34%,100% 68%,99% 100%,74% 99%,48% 100%,22% 99%,0 100%,1% 68%,0 34%)}
+@media(max-width:720px){.shot:hover img{transform:scale(1.015);filter:none}}
 @media(pointer:fine){
   body.intro-active,body.intro-active *{cursor:none}
   body:not(.intro-active) .cursor-dot,body:not(.intro-active) .cursor-ring{opacity:1}
@@ -622,7 +651,14 @@ footer{letter-spacing:.055em}
   body:not(.intro-active) .cursor-ring.cursor-hover{width:54px;height:54px;border-color:var(--rose-deep)}
 }
 @media(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
-@media(prefers-reduced-motion:reduce){.cursor-dot,.cursor-ring{display:none}.intro.is-entering{clip-path:none}}
+@media(prefers-reduced-motion:reduce){
+  .cursor-dot,.cursor-ring{display:none}
+  .intro.is-entering{clip-path:none}
+  .flora-reveal::before,.flora-reveal.is-revealed::before{clip-path:none}
+  .page-wipe{display:none}
+  .m .hero h1,.m .hero .lede,.m .split>header h2[data-r]{clip-path:none;opacity:1;animation:none}
+  .shot img{clip-path:none!important;transform:none!important;filter:none!important}
+}
 </style>
 </head>
 <body>
@@ -634,11 +670,12 @@ footer{letter-spacing:.055em}
 <a class="skip" href="#log">Skip to the training log</a>
 
 <div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Portfolio introduction">
-  <video id="intro-video" src="assets/intro/video.mp4" muted playsinline preload="metadata" aria-hidden="true"></video>
+  <video id="intro-video" src="assets/intro/video.mp4" muted playsinline autoplay loop preload="auto" aria-hidden="true"></video>
   <button class="intro-open" id="intro-open" type="button" aria-label="Enter portfolio">Enter portfolio</button>
 </div>
 <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
 <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+<div class="page-wipe" id="page-wipe" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -1046,12 +1083,21 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
   tag('.split h2, .split header p, .split > p, .contact h2, .contact .wrap > p, .contact .ctas, .record > div, .steps .step, .case, .essay, .clock, .pick, .read', 'data-r', 80);
   tag('.skills li', 'data-r', 45);
   tag('.divider, .med-art, .bouquet', 'data-b', 0);
-  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), {rootMargin: '0px 0px -6% 0px', threshold: .1});
+  const io = new IntersectionObserver(es => es.forEach(x => {
+    if (!x.isIntersecting) return;
+    if (x.target.matches('.flora-reveal')) x.target.classList.add('is-revealed');
+    else x.target.classList.add('in');
+    io.unobserve(x.target);
+  }), {rootMargin: '0px 0px -6% 0px', threshold: .1});
+  document.querySelectorAll('#how,#cases,#writing,.contact').forEach(section => {
+    section.classList.add('flora-reveal');
+    io.observe(section);
+  });
   document.querySelectorAll('[data-r],[data-b]').forEach(el => io.observe(el));
 })();
 $('#yr').textContent = new Date().getFullYear();
 
-/* intro video and smooth cursor */
+/* Autoplay the opening film; entering reveals the portfolio. */
 (() => {
   const intro = $('#intro');
   const video = $('#intro-video');
@@ -1060,55 +1106,116 @@ $('#yr').textContent = new Date().getFullYear();
 
   document.body.classList.add('intro-active');
 
-  const enter = () => {
-    if (intro.classList.contains('is-entering')) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finishEntry = () => {
     intro.classList.add('is-entering');
-    open.hidden = true;
-    video.play().catch(() => {});
+    document.body.classList.add('motion-ready');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      intro.classList.add('is-open');
+      intro.setAttribute('aria-hidden', 'true');
+      intro.removeAttribute('aria-modal');
+      document.body.classList.remove('intro-active');
+      if (reduced) video.pause();
+    }));
   };
 
-  open.addEventListener('click', enter);
-  video.addEventListener('ended', () => {
-    intro.classList.remove('is-entering');
-    intro.classList.add('is-open');
-    document.body.classList.remove('intro-active');
-  });
-  video.addEventListener('error', () => {
-    intro.classList.add('is-open');
-    document.body.classList.remove('intro-active');
-  });
-
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    open.addEventListener('click', () => {
-      intro.classList.add('is-open');
-      document.body.classList.remove('intro-active');
+  if (!reduced) {
+    intro.addEventListener('transitionend', event => {
+      if (event.propertyName === 'clip-path') video.pause();
     });
   }
 
+  open.addEventListener('click', () => {
+    if (open.disabled || intro.classList.contains('is-open')) return;
+    open.disabled = true;
+    const wasPaused = video.paused;
+    const playback = wasPaused ? video.play() : Promise.resolve();
+    playback.then(() => {
+      open.hidden = true;
+      if (wasPaused && !reduced) setTimeout(finishEntry, 900);
+      else finishEntry();
+    }).catch(error => {
+      open.disabled = false;
+      open.textContent = 'Tap to play film';
+      console.error('The portfolio intro video could not start.', error);
+    });
+  });
+
+  video.addEventListener('error', () => {
+    open.disabled = false;
+    open.textContent = 'Intro video unavailable';
+    console.error('The portfolio intro video failed to load.', video.error);
+  });
+
+  video.play().catch(error => {
+    if (error.name === 'NotAllowedError') open.textContent = 'Play film & enter';
+    else console.error('The portfolio intro video could not autoplay.', error);
+  });
+})();
+
+/* A brief blush mask marks internal editorial navigation. */
+(() => {
+  const wipe = $('#page-wipe');
+  if (!wipe || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = document.getElementById(decodeURIComponent(href.slice(1)));
+    if (!target || wipe.classList.contains('is-active')) return;
+
+    event.preventDefault();
+    wipe.style.setProperty('--wipe-x', `${event.clientX || innerWidth / 2}px`);
+    wipe.style.setProperty('--wipe-y', `${event.clientY || innerHeight / 2}px`);
+    wipe.classList.add('is-active');
+    setTimeout(() => {
+      history.pushState(null, '', href);
+      const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+      window.scrollTo(0, Math.max(0, target.getBoundingClientRect().top + scrollY - offset));
+      setTimeout(() => wipe.classList.remove('is-active'), 80);
+    }, 460);
+  });
+})();
+
+/* Follow the pointer only while it moves; stop the frame loop at rest. */
+(() => {
   const dot = $('#cursor-dot');
   const ring = $('#cursor-ring');
-  if (dot && ring && matchMedia('(pointer:fine)').matches) {
-    let x = innerWidth / 2, y = innerHeight / 2;
-    let rx = x, ry = y;
-    addEventListener('mousemove', e => {
-      x = e.clientX;
-      y = e.clientY;
-      dot.style.opacity = '1';
-      ring.style.opacity = '1';
-      dot.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%, -50%)`;
-    }, {passive:true});
-    const smooth = () => {
-      rx += (x - rx) * .14;
-      ry += (y - ry) * .14;
-      ring.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%, -50%)`;
-      requestAnimationFrame(smooth);
-    };
-    requestAnimationFrame(smooth);
-    document.querySelectorAll('a,button,input').forEach(el => {
-      el.addEventListener('mouseenter', () => { dot.classList.add('cursor-hover'); ring.classList.add('cursor-hover'); });
-      el.addEventListener('mouseleave', () => { dot.classList.remove('cursor-hover'); ring.classList.remove('cursor-hover'); });
-    });
-  }
+  if (!dot || !ring || !matchMedia('(pointer:fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let x = innerWidth / 2, y = innerHeight / 2;
+  let rx = x, ry = y, frame = 0;
+  const smooth = () => {
+    rx += (x - rx) * .18;
+    ry += (y - ry) * .18;
+    ring.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%, -50%)`;
+    if (Math.abs(x - rx) + Math.abs(y - ry) > .3) frame = requestAnimationFrame(smooth);
+    else frame = 0;
+  };
+  addEventListener('mousemove', event => {
+    x = event.clientX;
+    y = event.clientY;
+    dot.style.opacity = '1';
+    ring.style.opacity = '1';
+    dot.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%, -50%)`;
+    if (!frame) frame = requestAnimationFrame(smooth);
+  }, {passive:true});
+  document.querySelectorAll('a,button,input').forEach(el => {
+    el.addEventListener('mouseenter', () => { dot.classList.add('cursor-hover'); ring.classList.add('cursor-hover'); });
+    el.addEventListener('mouseleave', () => { dot.classList.remove('cursor-hover'); ring.classList.remove('cursor-hover'); });
+  });
+})();
+
+/* Keep the existing marquees paused off-screen. */
+(() => {
+  const track = $('.track');
+  if (!track || !('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver(([entry]) => {
+    track.classList.toggle('is-active', entry.isIntersecting);
+  });
+  observer.observe(track);
 })();
 </script>
 </body>
