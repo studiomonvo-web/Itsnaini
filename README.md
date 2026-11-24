@@ -1,6 +1,6 @@
 # Itsnaini Nurfaizah, portfolio site
 
-Open `index.html` in a browser. No build step. Internet is only needed for the Google Fonts (Newsreader and Figtree).
+Open `index.html` in a browser. No build step. Cormorant Garamond and DM Sans are bundled locally in `assets/fonts`.
 
 ## Fill in before you share the link
 Open `index.html`, search for `const PROFILE` near the bottom, and fill in `email` and `linkedin`.
