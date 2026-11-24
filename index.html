@@ -744,6 +744,166 @@ footer{letter-spacing:.055em}
   .m .hero h1,.m .hero .lede,.m .split>header h2[data-r]{clip-path:none;opacity:1;animation:none}
   .shot img{clip-path:none!important;transform:none!important;filter:none!important}
 }
+
+/* Layout adaptation: centered introduction, floating navigation, modular work cards. */
+.nav{position:fixed;inset:14px 0 auto;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav.stuck{border-color:transparent}
+.nav .wrap{
+  width:calc(100% - 32px);
+  max-width:1360px;
+  height:auto;
+  min-height:60px;
+  gap:clamp(10px,2vw,28px);
+  padding:10px clamp(14px,2.2vw,28px);
+  border:1px solid rgba(234,221,226,.9);
+  border-radius:999px;
+  background:rgba(254,252,251,.9);
+  box-shadow:0 12px 40px -30px rgba(43,27,46,.45);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.nav ul{gap:clamp(14px,2vw,30px);padding:8px 18px;border:1px solid rgba(234,221,226,.7);border-radius:999px;background:rgba(255,255,255,.55)}
+.nav .pill{background:#fff}
+.hero{padding:clamp(124px,14vw,176px) 0 clamp(72px,9vw,120px)}
+.hero .wrap{display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center}
+.hero .wrap>div:first-child{order:2;width:min(920px,100%);min-width:0}
+.hero .arch-wrap{order:1;width:clamp(210px,25vw,300px);margin:0 auto;justify-self:center}
+.hero .arch{aspect-ratio:1;border-radius:50%;overflow:hidden;background:var(--petal);box-shadow:0 20px 60px -38px rgba(120,60,90,.5)}
+.hero .arch img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.hero .arch-line{inset:-12px 12px 12px -12px;border-radius:50%}
+.hero .hero-flora{inset:-14% -16%;width:132%;height:128%}
+.hero .wrap>div:first-child>a.pill{display:inline-flex;margin:0 auto;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.75);white-space:normal}
+.hero h1{max-width:16ch;margin:18px auto 20px;font-size:clamp(3.2rem,6.2vw,6.2rem);line-height:.9;letter-spacing:-.025em;text-align:center}
+.hero h1 .in3{display:block;margin:4px auto 0;letter-spacing:-.015em}
+.hero .lede{max-width:68ch;margin:0 auto;font-size:1rem}
+.hero .facts{max-width:980px;margin:30px auto 0;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.hero .facts li{align-items:flex-start;padding:15px 16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.7);text-align:left;font-size:.84rem}
+.hero .facts svg{margin-top:3px}
+.hero .ctas{justify-content:center;margin:26px auto 0}
+.hero .btn,.contact .btn{border-radius:999px}
+.band{padding:22px 0}
+.band p{text-align:center;padding:0 20px}
+#log .split,#how .split,#cases .split,#sessions .split.half,#writing .split.half,#hours .split{display:block}
+#log .split>header .sticky,#how .split>header .sticky,#cases .split>header .sticky,#hours .split>header .sticky{position:static;text-align:center}
+#log .split>header .sticky{display:block;max-width:780px;margin:0 auto 42px;padding:0;border:0}
+#log .split>header h2,#how .split>header h2,#cases .split>header h2,#sessions .split>header h2,#writing .split>header h2,#hours .split>header h2{
+  max-width:18ch;
+  margin:0 auto 14px;
+  font-size:clamp(2.8rem,5.5vw,5.2rem);
+  line-height:.94;
+  letter-spacing:-.025em;
+  text-align:center;
+}
+#log .split>header p,#how .split>header p,#cases .split>header p,#sessions .split>p,#writing .split>p,#hours .split>header p{
+  max-width:66ch;
+  margin:0 auto;
+  text-align:center;
+}
+#log .split>div{padding:0}
+#log .record{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0 0 42px;border:0}
+#log .record>div{display:block;padding:24px 26px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.78)}
+#log .record dt{margin-bottom:8px;font-size:1.55rem}
+#log .controls{justify-content:center;gap:18px;margin:0 0 12px}
+#log .count{text-align:center}
+#log .log{border-top:1px solid var(--line)}
+#how{padding-block:clamp(72px,9vw,120px);background:linear-gradient(180deg,var(--paper),rgba(251,238,241,.62),var(--paper))}
+#how .split>header .sticky{margin:0 auto}
+#how .steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:46px;padding:0}
+#how .step{display:block;padding:28px 26px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.82)}
+#how .step .node{position:static;width:46px;height:46px;margin:0 0 20px;background:var(--paper)}
+#how .step h3{margin:0 0 10px;font-size:1.7rem}
+#how .step p{font-size:.94rem}
+#how .skills{justify-content:center}
+#cases .split>header .sticky{margin:0 auto 42px}
+#cases .cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;border:0}
+#cases-list .case,#cases-list .case:nth-child(even),#cases-list .case:nth-child(odd){
+  display:block;
+  margin:0;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(255,255,255,.82);
+}
+#cases-list .case:nth-child(even) .case-head{grid-column:auto;grid-row:auto;text-align:left}
+#cases-list .case:nth-child(even) .case-body{grid-column:auto;grid-row:auto}
+#cases-list .case .case-head{margin:0 0 20px}
+#cases-list .case .case-body{margin:0}
+#cases-list .case .skills{grid-column:auto;grid-row:auto;margin:22px 0 0}
+#sessions .split.half{margin:0 auto 30px!important;text-align:center}
+#sessions .rail{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  width:var(--wrap);
+  margin:38px auto 0;
+  padding:0;
+  gap:18px;
+  overflow:visible;
+  scroll-snap-type:none;
+}
+#sessions .shot{position:relative;width:100%;scroll-snap-align:none}
+#sessions .shot:nth-child(even){margin-top:0}
+#sessions .shot .frame{overflow:hidden;padding:0;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 16px 38px -30px rgba(60,30,50,.55)}
+#sessions .shot img{aspect-ratio:1366/820;object-fit:cover}
+#sessions .shot .cap{
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  margin:0;
+  padding:12px 14px;
+  border:1px solid rgba(234,221,226,.8);
+  border-radius:12px;
+  background:rgba(255,255,255,.92);
+  color:var(--ink);
+  text-align:left;
+  font-size:.65rem;
+  box-shadow:0 6px 24px -16px rgba(43,27,46,.5);
+}
+#sessions .shot:hover .frame{transform:translateY(-4px)}
+#writing .split.half{margin:0 auto 34px!important;text-align:center}
+#writing .essay{grid-template-columns:minmax(0,1.2fr) minmax(0,.55fr);max-width:1060px;margin:0 auto;padding:clamp(26px,5vw,54px);border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.76)}
+#writing .essay h3{max-width:14ch;font-size:clamp(2.2rem,4.2vw,4.1rem);line-height:.98}
+#writing .essay .btn.go{border-radius:999px;padding:13px 22px;border:1px solid var(--ink)}
+#hours{padding-block:clamp(72px,9vw,120px);background:linear-gradient(180deg,var(--paper),rgba(232,240,234,.56),var(--paper))}
+#hours .split>header .sticky{margin:0 auto 38px}
+#hours .clocks{gap:14px;border:0}
+#hours .clock,#hours .clock+.clock{padding:24px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.8);text-align:center}
+#hours .clock.me{color:var(--ink);border-color:var(--line)}
+#hours .clock.me span{color:var(--mute)}
+#hours .pick{margin:0 auto 22px}
+#hours .split>div{text-align:center}
+#hours .axis,#hours .ticks,#hours .read{max-width:880px;margin-inline:auto}
+#contact{padding-top:clamp(72px,9vw,120px);text-align:center}
+#contact h2{max-width:16ch;margin:0 auto 20px;text-align:center;font-size:clamp(3rem,6vw,6.2rem);line-height:.92}
+#contact p{max-width:64ch;margin:0 auto;text-align:center}
+#contact .ctas{justify-content:center}
+footer .wrap{justify-content:center;text-align:center;gap:10px 24px;padding-top:20px}
+@media(max-width:900px){
+  #sessions .rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .nav .wrap{min-height:56px}
+  .hero{padding-top:120px}
+  .hero .arch-wrap{width:clamp(190px,42vw,260px)}
+  .hero .facts{grid-template-columns:1fr}
+  #log .record{grid-template-columns:1fr}
+  #how .steps{grid-template-columns:1fr;margin-top:32px}
+  #cases .cases{grid-template-columns:1fr}
+  #writing .essay{grid-template-columns:1fr}
+  #writing .med-art{max-width:230px;justify-self:center}
+  #sessions .rail{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+}
+@media(max-width:520px){
+  .nav{inset:10px 0 auto}
+  .nav .wrap{width:calc(100% - 20px);padding:9px 12px;gap:8px}
+  .brand{gap:6px;font-size:1rem}
+  .brand svg{width:25px;height:25px}
+  .nav .pill{padding:7px 10px;font-size:.6rem}
+  .hero{padding-top:112px}
+  .hero h1{font-size:clamp(2.8rem,12vw,4rem)}
+  #sessions .rail{grid-template-columns:1fr}
+  #log .record>div,#how .step,#cases-list .case{padding:22px}
+}
 </style>
 </head>
 <body>
@@ -778,7 +938,7 @@ footer{letter-spacing:.055em}
 </header>
 
 <main id="top">
-<section class="hero" style="padding-top:clamp(36px,6vw,84px)">
+<section class="hero">
   <div class="wash" style="width:420px;height:420px;background:#F8D5DE;left:-120px;top:40px;opacity:.7"></div>
   <div class="wash" style="width:360px;height:360px;background:#E7DFF5;right:-80px;bottom:-60px;opacity:.8"></div>
   <div class="wrap">
@@ -879,7 +1039,7 @@ footer{letter-spacing:.055em}
   </div>
 </section>
 
-<section id="sessions" style="padding-bottom:0">
+<section id="sessions">
   <div class="wrap">
     <div class="split half">
       <header><h2>Live delivery, on record</h2></header>
