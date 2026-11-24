@@ -522,6 +522,107 @@ footer{letter-spacing:.055em}
   .hero-flora .stem{stroke-dashoffset:0}.hero-flora .bloom{opacity:1}.hero-flora .petal-fall{opacity:0}
   .track{transform:none}
 }
+
+/* ---------- video entry ---------- */
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:var(--ink);
+  transition:opacity 1s cubic-bezier(.7,0,.2,1),visibility 1s;
+}
+.intro video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(.72) sepia(.05);
+  opacity:.82;
+  transform:scale(1.025);
+  transition:transform 1.8s cubic-bezier(.2,.8,.2,1),filter 1.2s;
+}
+.intro::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(43,27,46,.12),rgba(43,27,46,.72));
+  pointer-events:none;
+}
+.intro-open{
+  padding:18px 24px;
+  position:relative;
+  z-index:2;
+  border:1px solid rgba(254,252,251,.72);
+  border-radius:999px;
+  background:rgba(43,27,46,.18);
+  backdrop-filter:blur(12px);
+  color:#fff;
+  font:500 .72rem/1 var(--sans);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s,color .35s;
+}
+.intro-open:hover{
+  transform:scale(1.055);
+  background:var(--paper);
+  color:var(--ink);
+}
+.intro.is-entering video{
+  transform:scale(1);
+  filter:saturate(.9);
+}
+.intro.is-entering{
+  clip-path:circle(150% at 50% 50%);
+  transition:clip-path 1.35s cubic-bezier(.7,0,.2,1),opacity .8s .55s;
+}
+.intro.is-open{
+  clip-path:circle(0 at 50% 50%);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.cursor-dot{
+  position:fixed;
+  z-index:1000;
+  left:0;
+  top:0;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--rose-deep);
+  pointer-events:none;
+  opacity:0;
+  transform:translate3d(-50%,-50%,0);
+  transition:width .25s,height .25s,opacity .25s,background .25s;
+  mix-blend-mode:multiply;
+}
+.cursor-ring{
+  position:fixed;
+  z-index:999;
+  left:0;
+  top:0;
+  width:38px;
+  height:38px;
+  border:1px solid var(--rose);
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0;
+  transform:translate3d(-50%,-50%,0);
+  transition:width .35s,height .35s,opacity .25s,border-color .25s;
+}
+@media(pointer:fine){
+  body.intro-active,body.intro-active *{cursor:none}
+  body:not(.intro-active) .cursor-dot,body:not(.intro-active) .cursor-ring{opacity:1}
+  body:not(.intro-active) .cursor-dot.cursor-hover{width:15px;height:15px;background:var(--rose)}
+  body:not(.intro-active) .cursor-ring.cursor-hover{width:54px;height:54px;border-color:var(--rose-deep)}
+}
+@media(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+@media(prefers-reduced-motion:reduce){.cursor-dot,.cursor-ring{display:none}.intro.is-entering{clip-path:none}}
 </style>
 </head>
 <body>
@@ -531,6 +632,13 @@ footer{letter-spacing:.055em}
 <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="28"/></filter>
 </defs></svg>
 <a class="skip" href="#log">Skip to the training log</a>
+
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Portfolio introduction">
+  <video id="intro-video" src="assets/intro/video.mp4" muted playsinline preload="metadata" aria-hidden="true"></video>
+  <button class="intro-open" id="intro-open" type="button" aria-label="Enter portfolio">Enter portfolio</button>
+</div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -942,6 +1050,66 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
   document.querySelectorAll('[data-r],[data-b]').forEach(el => io.observe(el));
 })();
 $('#yr').textContent = new Date().getFullYear();
+
+/* intro video and smooth cursor */
+(() => {
+  const intro = $('#intro');
+  const video = $('#intro-video');
+  const open = $('#intro-open');
+  if (!intro || !video || !open) return;
+
+  document.body.classList.add('intro-active');
+
+  const enter = () => {
+    if (intro.classList.contains('is-entering')) return;
+    intro.classList.add('is-entering');
+    open.hidden = true;
+    video.play().catch(() => {});
+  };
+
+  open.addEventListener('click', enter);
+  video.addEventListener('ended', () => {
+    intro.classList.remove('is-entering');
+    intro.classList.add('is-open');
+    document.body.classList.remove('intro-active');
+  });
+  video.addEventListener('error', () => {
+    intro.classList.add('is-open');
+    document.body.classList.remove('intro-active');
+  });
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    open.addEventListener('click', () => {
+      intro.classList.add('is-open');
+      document.body.classList.remove('intro-active');
+    });
+  }
+
+  const dot = $('#cursor-dot');
+  const ring = $('#cursor-ring');
+  if (dot && ring && matchMedia('(pointer:fine)').matches) {
+    let x = innerWidth / 2, y = innerHeight / 2;
+    let rx = x, ry = y;
+    addEventListener('mousemove', e => {
+      x = e.clientX;
+      y = e.clientY;
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+      dot.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%, -50%)`;
+    }, {passive:true});
+    const smooth = () => {
+      rx += (x - rx) * .14;
+      ry += (y - ry) * .14;
+      ring.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%, -50%)`;
+      requestAnimationFrame(smooth);
+    };
+    requestAnimationFrame(smooth);
+    document.querySelectorAll('a,button,input').forEach(el => {
+      el.addEventListener('mouseenter', () => { dot.classList.add('cursor-hover'); ring.classList.add('cursor-hover'); });
+      el.addEventListener('mouseleave', () => { dot.classList.remove('cursor-hover'); ring.classList.remove('cursor-hover'); });
+    });
+  }
+})();
 </script>
 </body>
 </html>
