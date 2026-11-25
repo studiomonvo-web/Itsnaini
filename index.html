@@ -8,7 +8,7 @@
 <meta property="og:title" content="Itsnaini Nurfaizah · Learning Operations and Programme Coordination">
 <meta property="og:description" content="I make learning programmes work, beyond the classroom. Open to remote roles with UK and US teams.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#FEFCFB">
+<meta name="theme-color" content="#FBFAFB">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'%3E%3Cg%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(0)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(72)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(144)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(216)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(288)'/%3E%3Ccircle r='3' fill='%23D9AE62'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/bodoni-moda-regular.ttf?v=bb1da42-editorial" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/dm-sans-regular.ttf?v=78081d4" as="font" type="font/ttf" crossorigin>
@@ -937,6 +937,69 @@ body{
 .hero .wash{display:none}
 #how,#hours{background:transparent}
 @media(max-width:760px){body{background-size:160px 160px,auto,auto 100vh}}
+
+/* Professional finish: quieter florals, sharper surfaces, and muted rose accents. */
+:root{
+  --paper:#FBFAFB;
+  --petal:#F8EFF2;
+  --petal-2:#E9CCD5;
+  --lilac:#F3EFF5;
+  --sage-wash:#F4EFF1;
+  --ink:#302531;
+  --ink-2:#514653;
+  --mute:#736873;
+  --line:#E7DDE2;
+  --rose:#B6677F;
+  --rose-deep:#8E435A;
+}
+body{
+  background-color:var(--paper);
+  background-image:var(--grain),linear-gradient(rgba(251,250,251,.96),rgba(251,250,251,.96)),url(assets/flora/pink-cherry-blossom.jpg);
+}
+.hero::before,#log::before,#how::before,#cases::before,#writing::before,#contact::before{
+  background-image:linear-gradient(rgba(251,250,251,.96),rgba(251,250,251,.96)),url(assets/flora/pink-cherry-blossom.jpg);
+  opacity:.4;
+}
+#writing::before{
+  background-image:linear-gradient(rgba(251,250,251,.96),rgba(251,250,251,.96)),url(assets/flora/pink-cherry-blossom.jpg);
+}
+.nav .wrap{
+  border-radius:14px;
+  border-color:rgba(231,221,226,.95);
+  background:rgba(251,250,251,.96);
+  box-shadow:0 10px 32px -28px rgba(48,37,49,.55);
+}
+.nav ul{
+  border-color:transparent;
+  border-radius:8px;
+  background:transparent;
+}
+.nav .pill,.hero .wrap>div:first-child>a.pill{
+  border-radius:6px;
+  border-color:var(--line);
+  background:rgba(255,255,255,.9);
+}
+.hero .facts li,#log .record>div,#how .step,#cases-list .case,
+#sessions .shot .frame,#sessions .shot .cap,#writing .essay,
+#hours .clock,#hours .clock+.clock{
+  border-radius:12px;
+  border-color:var(--line);
+  background:rgba(255,255,255,.92);
+}
+.hero .btn,.contact .btn,#writing .essay .btn.go{
+  border-radius:6px;
+}
+.hero .btn.solid,.contact .btn.solid{
+  background:var(--rose-deep);
+  border-color:var(--rose-deep);
+}
+.hero .btn.solid:hover,.contact .btn.solid:hover{
+  background:var(--ink);
+  border-color:var(--ink);
+}
+#how,#hours{
+  background:linear-gradient(180deg,transparent,rgba(248,239,242,.5),transparent);
+}
 </style>
 </head>
 <body>
