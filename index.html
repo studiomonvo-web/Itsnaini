@@ -13,7 +13,7 @@
 <link rel="preload" href="assets/fonts/bodoni-moda-regular.ttf?v=bb1da42-editorial" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/dm-sans-regular.ttf?v=78081d4" as="font" type="font/ttf" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Itsnaini Nurfaizah","jobTitle":"Training Coordinator","worksFor":{"@type":"Organization","name":"B/NDL Studios"},"address":{"@type":"PostalAddress","addressCountry":"ID"},"sameAs":["https://medium.com/@itsnaininurfaizah21"]}</script>
-<script>(function(d){if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("m")})(document.documentElement)</script>
+<script>(function(d){if("IntersectionObserver" in window){d.classList.add("js-anim");if(!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("m")}})(document.documentElement)</script>
 <style>
 @font-face{
   font-family:"Bodoni Moda";
@@ -1055,6 +1055,36 @@ body{
   border:1px solid var(--rose);
   border-radius:50%;
 }
+/* Additive scroll motion: overlays and transforms only. */
+:root{--anim-duration:650ms;--anim-ease:cubic-bezier(.22,1,.36,1);--stagger:100ms;--reveal-distance:24px;--reveal-duration:650ms;--reveal-ease:var(--anim-ease);--reveal-stagger:var(--stagger)}
+html.js-anim section[id]:not(#contact)::after{content:"";position:absolute;inset:0 0 auto;height:1px;background:var(--line);transform:scaleX(1);transform-origin:left;pointer-events:none}
+html.m section[id]:not(#contact)::after{transform:scaleX(0);transition:transform var(--anim-duration) var(--anim-ease)}
+html.m section[id]:not(#contact).motion-seen::after{transform:scaleX(1)}
+html.js-anim .scroll-progress{position:fixed;inset:0 0 auto;height:2px;background:var(--rose);transform:scaleX(var(--scroll-progress,0));transform-origin:left;z-index:1001;pointer-events:none}
+html.js-anim .motion-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
+html.js-anim .motion-lines path{fill:none;stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset var(--anim-duration) var(--anim-ease)}
+html.m .motion-lines path{stroke-dashoffset:1}
+html.m .motion-seen .motion-lines path{stroke-dashoffset:0}
+html.js-anim #how .step::after,html.js-anim .journey-card::before{content:"";position:absolute;width:7px;height:7px;border:1px solid var(--rose);border-radius:50%;background:var(--paper);pointer-events:none}
+html.js-anim #how .step::after{left:46px;top:48px}
+html.js-anim .journey-card{position:relative}
+html.js-anim .journey-card::before{top:12px;right:12px}
+html.m #how .step::after,html.m .journey-card::before{opacity:0;transform:scale(.5);transition:transform var(--anim-duration) var(--anim-ease),opacity var(--anim-duration) var(--anim-ease)}
+html.m #how .step.in::after,html.m .journey-card.in::before{opacity:1;transform:scale(1);background:var(--rose)}
+html.m [data-reveal]:not(.in){filter:blur(6px)}
+html.m [data-reveal].in{filter:none;transition:filter var(--reveal-duration) var(--reveal-ease);animation-duration:var(--reveal-duration)}
+html.m .motion-ready .split>header h2[data-reveal].in{animation-duration:var(--reveal-duration)}
+html.m [data-reveal]{--rise:var(--reveal-distance)}
+html.m [data-reveal="image"]{clip-path:inset(8%);transform:scale(1.06);transition:clip-path var(--reveal-duration) var(--reveal-ease),transform var(--reveal-duration) var(--reveal-ease)}
+html.m [data-reveal="image"].in{clip-path:inset(0);transform:scale(1)}
+html.js-anim .nav ul a{position:relative}
+html.js-anim .nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:5px;height:1px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--anim-ease)}
+html.js-anim .nav ul a[aria-current="true"]::after{transform:scaleX(1)}
+html.js-anim #lb{opacity:0;transform:scale(.98);transition:opacity 300ms var(--anim-ease),transform 300ms var(--anim-ease)}
+html.js-anim #lb.is-open{opacity:1;transform:scale(1)}
+html.js-anim .clock b,html.js-anim #local{transition:opacity 250ms var(--anim-ease)}
+html.js-anim .record>div,html.js-anim #cases-list .case,html.js-anim .workflow-steps li,html.js-anim #how .step{transition:transform 250ms var(--anim-ease)}
+html.js-anim .record>div:hover,html.js-anim #cases-list .case:hover,html.js-anim .workflow-steps li:hover,html.js-anim #how .step:hover{transform:translateY(-2px)}
 </style>
 </head>
 <body class="motion-ready">
@@ -1511,11 +1541,13 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
   const fmt = d => new Date(d + 'T00:00:00').toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
   const rail = $('#rail');
   rail.innerHTML = GAL.map((g, i) => `<button class="shot" data-i="${i}" aria-label="Open session from ${fmt(g.date)}"><div class="frame"><img src="${g.src}" alt="Live Zoom cohort session" loading="lazy" width="1366" height="652"></div><span class="cap">${fmt(g.date)}</span></button>`).join('');
-  const dlg = $('#lb'); let cur = 0;
+  const dlg = $('#lb'); let cur = 0, closeTimer;
   const show = i => { cur = (i + GAL.length) % GAL.length; $('#lb-img').src = GAL[cur].src; $('#lb-img').alt = 'Live Zoom cohort session on ' + fmt(GAL[cur].date); $('#lb-cap').textContent = fmt(GAL[cur].date) + ' · ' + (cur + 1) + ' of ' + GAL.length; };
-  rail.addEventListener('click', e => { const b = e.target.closest('.shot'); if (!b) return; show(+b.dataset.i); dlg.showModal(); });
-  $('#lb-x').onclick = () => dlg.close(); $('#lb-prev').onclick = () => show(cur - 1); $('#lb-next').onclick = () => show(cur + 1);
-  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  const close = () => { dlg.classList.remove('is-open'); if (matchMedia('(prefers-reduced-motion: reduce)').matches) dlg.close(); else { clearTimeout(closeTimer); closeTimer = setTimeout(() => dlg.close(), 300); } };
+  rail.addEventListener('click', e => { const b = e.target.closest('.shot'); if (!b) return; show(+b.dataset.i); dlg.showModal(); void dlg.offsetWidth; dlg.classList.add('is-open'); });
+  $('#lb-x').onclick = close; $('#lb-prev').onclick = () => show(cur - 1); $('#lb-next').onclick = () => show(cur + 1);
+  dlg.addEventListener('click', e => { if (e.target === dlg) close(); });
+  dlg.addEventListener('cancel', e => { e.preventDefault(); close(); });
   dlg.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
 })();
 
@@ -1524,7 +1556,8 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
   const ME = 'Asia/Jakarta';
   const off = (tz, d) => { const p = Object.fromEntries(new Intl.DateTimeFormat('en-US', {timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).formatToParts(d).map(x => [x.type, x.value])); return (Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second) - Math.floor(d.getTime() / 1000) * 1000) / 60000; };
   const clock = tz => new Intl.DateTimeFormat('en-GB', {timeZone: tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23'}).format(new Date());
-  const tick = () => { document.querySelectorAll('[data-tz]').forEach(el => el.textContent = clock(el.dataset.tz)); $('#local').textContent = clock(ME); place(); };
+  const swap = (el, value) => { if (el.textContent === value) return; el.style.opacity = '0'; requestAnimationFrame(() => { el.textContent = value; requestAnimationFrame(() => el.style.removeProperty('opacity')); }); };
+  const tick = () => { document.querySelectorAll('[data-tz]').forEach(el => swap(el, clock(el.dataset.tz))); swap($('#local'), clock(ME)); place(); };
   let zone = 'Europe/London';
   const pad = n => String(((n % 24) + 24) % 24).padStart(2, '0') + ':00';
   function place() {
@@ -1607,22 +1640,108 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
 
 /* editorial motion: reveals only, CSS does the animating */
 (() => {
-  if (!document.documentElement.classList.contains('m')) return;
-  const tag = (sel, attr, step) => { const g = new Map(); document.querySelectorAll(sel).forEach(el => { const a = g.get(el.parentElement) || []; a.push(el); g.set(el.parentElement, a); }); g.forEach(a => a.forEach((el, i) => { el.setAttribute(attr, ''); el.style.setProperty('--rd', Math.min(i, 5) * step / 1000 + 's'); })); };
-  tag('.split h2, .split header p, .split > p, .contact h2, .contact .wrap > p, .contact .ctas, .record > div, .steps .step, .case, .essay, .clock, .pick, .read', 'data-r', 80);
-  tag('.skills li', 'data-r', 45);
-  tag('.divider, .med-art, .bouquet', 'data-b', 0);
-  const io = new IntersectionObserver(es => es.forEach(x => {
-    if (!x.isIntersecting) return;
-    if (x.target.matches('.flora-reveal')) x.target.classList.add('is-revealed');
-    else x.target.classList.add('in');
-    io.unobserve(x.target);
-  }), {rootMargin: '0px 0px -6% 0px', threshold: .1});
-  document.querySelectorAll('#how,#cases,#writing,.contact').forEach(section => {
-    section.classList.add('flora-reveal');
-    io.observe(section);
+  const root = document.documentElement, motion = root.classList.contains('m');
+  if (!root.classList.contains('js-anim')) return;
+  const tag = (sel, attr, step = parseFloat(getComputedStyle(root).getPropertyValue('--reveal-stagger')) || 100, base = 0) => {
+    const groups = new Map();
+    document.querySelectorAll(sel).forEach(el => { const a = groups.get(el.parentElement) || []; a.push(el); groups.set(el.parentElement, a); });
+    groups.forEach(items => items.forEach((el, i) => {
+      el.setAttribute(attr, '');
+      el.dataset.reveal = el.matches('h2') ? 'heading' : el.matches('p') ? 'text' : el.matches('img') ? 'image' : 'item';
+      const delay = (el.matches('.skills li') && el.closest('#how') ? 650 : base) + Math.min(i, 7) * step;
+      el.dataset.revealDelay = delay;
+      el.style.setProperty('--rd', delay / 1000 + 's');
+    }));
+  };
+  const counts = [], number = new Intl.NumberFormat('en-US');
+  if (motion) document.querySelectorAll('.hero .facts li').forEach(li => {
+    const walk = document.createTreeWalker(li, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walk.nextNode()) nodes.push(walk.currentNode);
+    nodes.forEach(node => {
+      const re = /\b(2,500|1,000|53|14)(\+)?/g, text = node.nodeValue, fragment = document.createDocumentFragment();
+      let last = 0, match;
+      while ((match = re.exec(text))) {
+        fragment.append(text.slice(last, match.index));
+        const span = document.createElement('span');
+        span.dataset.count = match[1].replace(',', '');
+        span.dataset.suffix = match[2] || '';
+        span.textContent = match[0];
+        counts.push(span);
+        fragment.append(span);
+        last = re.lastIndex;
+      }
+      if (last) { fragment.append(text.slice(last)); node.replaceWith(fragment); }
+    });
+    counts.forEach(span => { span.style.display = 'inline-block'; span.style.width = span.getBoundingClientRect().width + 'px'; });
   });
-  document.querySelectorAll('[data-r],[data-b]').forEach(el => io.observe(el));
+  tag('.split h2', 'data-r', 100);
+  tag('.split header p, .split > p, .contact .wrap > p', 'data-r', 0, 120);
+  tag('.contact h2, .contact .ctas, .hero .facts li, .record > div, #log-list li, .steps .step, .journey-card, .case, .workflow-steps li, .shot, .essay, .clock, .pick, .read', 'data-r', 100);
+  tag('.skills li', 'data-r', 80);
+  tag('.divider, .med-art, .bouquet, .shot img', 'data-b', 0);
+  if (!motion) document.querySelectorAll('[data-r],[data-b]').forEach(el => el.classList.add('in'));
+  const visible = new Map();
+  const links = [...document.querySelectorAll('.nav nav a[href^="#"]')];
+  const setActive = () => {
+    const active = [...visible].filter(([, ratio]) => ratio > 0).sort((a, b) => b[1] - a[1])[0];
+    links.forEach(a => active && a.hash === '#' + active[0].id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  };
+  const io = new IntersectionObserver(entries => entries.forEach(entry => {
+    const el = entry.target;
+    if (el.matches('section[id]')) {
+      visible.set(el, entry.isIntersecting ? entry.intersectionRatio : 0);
+      if (entry.isIntersecting) {
+        el.classList.add('motion-seen');
+        if (el.matches('.flora-reveal')) el.classList.add('is-revealed');
+      }
+      setActive();
+      return;
+    }
+    if (!entry.isIntersecting || entry.intersectionRatio < .2) return;
+    if (el.matches('.hero .facts li')) {
+      const spans = el.querySelectorAll('[data-count]');
+      spans.forEach(span => {
+        const end = +span.dataset.count, suffix = span.dataset.suffix, start = 0, began = performance.now();
+        const tick = now => {
+          const p = Math.min(1, (now - began) / 1000), eased = 1 - (1 - p) ** 3;
+          span.textContent = number.format(Math.round(start + (end - start) * eased)) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        span.textContent = number.format(start) + suffix;
+        requestAnimationFrame(tick);
+      });
+    }
+    el.classList.add('in');
+    io.unobserve(el);
+  }), {rootMargin:'0px 0px -8% 0px',threshold:[0,.2]});
+  const observe = el => { if (!el.hasAttribute('data-reveal')) { el.dataset.reveal = 'item'; el.dataset.revealDelay = '0'; el.setAttribute('data-r', ''); } io.observe(el); };
+  document.querySelectorAll('[data-r],[data-b]').forEach(observe);
+  const sections = document.querySelectorAll('#log,#how,#cases,#sessions,#writing,#hours');
+  sections.forEach(section => { if (motion && section.matches('#how,#cases,#writing')) section.classList.add('flora-reveal'); io.observe(section); });
+  const list = $('#log-list');
+  new MutationObserver(() => list.querySelectorAll('li:not([data-reveal])').forEach((el, i) => { el.dataset.reveal = 'item'; el.dataset.revealDelay = Math.min(i, 7) * 40; el.setAttribute('data-r', ''); el.style.setProperty('--rd', Math.min(i, 7) * .04 + 's'); observe(el); })).observe(list, {childList:true});
+  const overlays = [];
+  const line = (section, selector, point) => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'), path = document.createElementNS(svg.namespaceURI, 'path');
+    svg.setAttribute('class','motion-lines'); svg.setAttribute('aria-hidden','true'); svg.setAttribute('focusable','false'); path.setAttribute('pathLength','1'); svg.append(path); section.append(svg);
+    const draw = () => {
+      const box = section.getBoundingClientRect(), items = [...section.querySelectorAll(selector)];
+      if (items.length < 2) return;
+      svg.setAttribute('viewBox', `0 0 ${section.clientWidth} ${section.clientHeight}`);
+      path.setAttribute('d', items.map((el, i) => { const r = el.getBoundingClientRect(), p = point(r, box); return `${i ? 'L' : 'M'}${p[0]} ${p[1]}`; }).join(' '));
+    };
+    overlays.push(draw); draw();
+  };
+  line($('#how'), '.steps .step', (r,b) => [r.left-b.left+49.5,r.top-b.top+51.5]);
+  line($('#cases'), '#career-journey .journey-card', (r,b) => [r.right-b.left-15.5,r.top-b.top+15.5]);
+  let resizeFrame = 0;
+  const resize = () => { if (!resizeFrame) resizeFrame = requestAnimationFrame(() => { resizeFrame = 0; overlays.forEach(draw => draw()); }); };
+  addEventListener('resize', resize, {passive:true}); if (document.fonts) document.fonts.ready.then(resize);
+  const bar = document.createElement('i'); bar.className = 'scroll-progress'; bar.setAttribute('aria-hidden','true'); document.body.append(bar);
+  let frame = 0;
+  const progress = () => { frame = 0; root.style.setProperty('--scroll-progress', Math.min(1, scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight))); };
+  addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(progress); }, {passive:true}); progress();
 })();
 $('#yr').textContent = new Date().getFullYear();
 
