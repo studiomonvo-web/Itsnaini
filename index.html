@@ -608,69 +608,6 @@ footer{letter-spacing:.055em}
   .track{transform:none}
 }
 
-/* ---------- video entry ---------- */
-.intro{
-  position:fixed;
-  inset:0;
-  z-index:999;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  background:var(--ink);
-  transition:opacity 1s cubic-bezier(.7,0,.2,1),visibility 1s;
-}
-.intro video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:saturate(.72) sepia(.05);
-  opacity:.82;
-  transform:scale(1.025);
-  transition:transform 1.8s cubic-bezier(.2,.8,.2,1),filter 1.2s;
-}
-.intro::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(43,27,46,.12),rgba(43,27,46,.72));
-  pointer-events:none;
-}
-.intro-open{
-  padding:18px 24px;
-  position:relative;
-  z-index:2;
-  border:1px solid rgba(254,252,251,.72);
-  border-radius:999px;
-  background:rgba(43,27,46,.18);
-  backdrop-filter:blur(12px);
-  color:#fff;
-  font:500 .72rem/1 var(--sans);
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s,color .35s;
-}
-.intro-open:hover{
-  transform:scale(1.055);
-  background:var(--paper);
-  color:var(--ink);
-}
-.intro.is-entering video{
-  transform:scale(1);
-  filter:saturate(.9);
-}
-.intro.is-entering{
-  clip-path:circle(150% at 50% 50%);
-  transition:clip-path .72s cubic-bezier(.7,0,.2,1),opacity .65s,visibility 0s .72s;
-}
-.intro.is-open{
-  clip-path:circle(0 at 50% 50%);
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
 .cursor-dot{
   position:fixed;
   z-index:1000;
@@ -730,15 +667,13 @@ footer{letter-spacing:.055em}
 .shot:hover img{transform:scale(1.035) skewX(-.35deg);filter:saturate(1.06) contrast(1.015);clip-path:polygon(0 1%,22% 0,48% 1%,76% 0,100% 1%,99% 34%,100% 68%,99% 100%,74% 99%,48% 100%,22% 99%,0 100%,1% 68%,0 34%)}
 @media(max-width:720px){.shot:hover img{transform:scale(1.015);filter:none}}
 @media(pointer:fine){
-  body.intro-active,body.intro-active *{cursor:none}
-  body:not(.intro-active) .cursor-dot,body:not(.intro-active) .cursor-ring{opacity:1}
-  body:not(.intro-active) .cursor-dot.cursor-hover{width:15px;height:15px;background:var(--rose)}
-  body:not(.intro-active) .cursor-ring.cursor-hover{width:54px;height:54px;border-color:var(--rose-deep)}
+  .cursor-dot,.cursor-ring{opacity:1}
+  .cursor-dot.cursor-hover{width:15px;height:15px;background:var(--rose)}
+  .cursor-ring.cursor-hover{width:54px;height:54px;border-color:var(--rose-deep)}
 }
 @media(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
 @media(prefers-reduced-motion:reduce){
   .cursor-dot,.cursor-ring{display:none}
-  .intro.is-entering{clip-path:none}
   .flora-reveal::before,.flora-reveal.is-revealed::before{clip-path:none}
   .page-wipe{display:none}
   .m .hero h1,.m .hero .lede,.m .split>header h2[data-r]{clip-path:none;opacity:1;animation:none}
@@ -1122,7 +1057,7 @@ body{
 }
 </style>
 </head>
-<body>
+<body class="motion-ready">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <radialGradient id="petalGrad" cx="50%" cy="85%" r="95%"><stop offset="0" stop-color="#F2B8C6"/><stop offset=".55" stop-color="#F8D8E0"/><stop offset="1" stop-color="#FDF1F4"/></radialGradient>
 <radialGradient id="petalGrad2" cx="50%" cy="85%" r="95%"><stop offset="0" stop-color="#E6D4F0"/><stop offset=".6" stop-color="#F3EAF8"/><stop offset="1" stop-color="#FCF9FE"/></radialGradient>
@@ -1130,10 +1065,6 @@ body{
 </defs></svg>
 <a class="skip" href="#log">Skip to the training log</a>
 
-<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Portfolio introduction">
-  <video id="intro-video" src="assets/intro/video.mp4" muted playsinline autoplay loop preload="auto" aria-hidden="true"></video>
-  <button class="intro-open" id="intro-open" type="button" aria-label="Enter portfolio">Enter portfolio</button>
-</div>
 <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
 <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 <div class="page-wipe" id="page-wipe" aria-hidden="true"></div>
@@ -1694,62 +1625,6 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
   document.querySelectorAll('[data-r],[data-b]').forEach(el => io.observe(el));
 })();
 $('#yr').textContent = new Date().getFullYear();
-
-/* Autoplay the opening film; entering reveals the portfolio. */
-(() => {
-  const intro = $('#intro');
-  const video = $('#intro-video');
-  const open = $('#intro-open');
-  if (!intro || !video || !open) return;
-
-  document.body.classList.add('intro-active');
-
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finishEntry = () => {
-    intro.classList.add('is-entering');
-    document.body.classList.add('motion-ready');
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      intro.classList.add('is-open');
-      intro.setAttribute('aria-hidden', 'true');
-      intro.removeAttribute('aria-modal');
-      document.body.classList.remove('intro-active');
-      if (reduced) video.pause();
-    }));
-  };
-
-  if (!reduced) {
-    intro.addEventListener('transitionend', event => {
-      if (event.propertyName === 'clip-path') video.pause();
-    });
-  }
-
-  open.addEventListener('click', () => {
-    if (open.disabled || intro.classList.contains('is-open')) return;
-    open.disabled = true;
-    const wasPaused = video.paused;
-    const playback = wasPaused ? video.play() : Promise.resolve();
-    playback.then(() => {
-      open.hidden = true;
-      if (wasPaused && !reduced) setTimeout(finishEntry, 900);
-      else finishEntry();
-    }).catch(error => {
-      open.disabled = false;
-      open.textContent = 'Tap to play film';
-      console.error('The portfolio intro video could not start.', error);
-    });
-  });
-
-  video.addEventListener('error', () => {
-    open.disabled = false;
-    open.textContent = 'Intro video unavailable';
-    console.error('The portfolio intro video failed to load.', video.error);
-  });
-
-  video.play().catch(error => {
-    if (error.name === 'NotAllowedError') open.textContent = 'Play film & enter';
-    else console.error('The portfolio intro video could not autoplay.', error);
-  });
-})();
 
 /* A brief blush mask marks internal editorial navigation. */
 (() => {
