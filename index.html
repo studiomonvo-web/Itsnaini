@@ -11,6 +11,7 @@
 <meta name="theme-color" content="#FBFAFB">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'%3E%3Cg%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(0)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(72)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(144)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(216)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(288)'/%3E%3Ccircle r='3' fill='%23D9AE62'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/bodoni-moda-regular.ttf?v=bb1da42-editorial" as="font" type="font/ttf" crossorigin>
+<script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.js" defer></script>
 <link rel="preload" href="assets/fonts/dm-sans-regular.ttf?v=78081d4" as="font" type="font/ttf" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Itsnaini Nurfaizah","jobTitle":"Training Coordinator","worksFor":{"@type":"Organization","name":"B/NDL Studios"},"address":{"@type":"PostalAddress","addressCountry":"ID"},"sameAs":["https://medium.com/@itsnaininurfaizah21"]}</script>
 <script>(function(d){if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("m")})(document.documentElement)</script>
@@ -284,9 +285,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-bet
   pointer-events:none;
 }
 .pgrid .pshot:hover .pframe::after{background:rgba(196,100,127,.06)}
-@keyframes pshot-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.m .pgrid .pshot{opacity:0;animation:pshot-in .6s cubic-bezier(.2,.8,.2,1) var(--pd,0s) both}
-@media(max-width:600px){.pgrid{columns:2 140px}}
+.pgrid .pshot{will-change:transform,opacity}
 
 
 .cases{border-top:1px solid var(--line)}
@@ -1679,44 +1678,90 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
   dlg.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
 })();
 
-/* portfolio gallery */
+/* portfolio gallery — Motion One animations */
 (() => {
   const tabHost = $('#gal-tabs');
   const grid = $('#pgrid');
   const dlg = $('#plb');
   if (!tabHost || !grid || !dlg) return;
 
-  let activeCat = 'all';
+  const mo = window.Motion;
+  const useMotion = !!mo && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const { animate, stagger, inView } = useMotion ? mo : {};
+
   let curItems = [];
   let curIdx = 0;
 
   const show = i => {
     curIdx = (i + curItems.length) % curItems.length;
     const item = curItems[curIdx];
-    $('#plb-img').src = item.src;
-    $('#plb-img').alt = item.cap;
+    const img = $('#plb-img');
+    if (useMotion) {
+      animate(img, { opacity: [0, 1], scale: [0.94, 1] }, { duration: 0.28, easing: [0.2, 0.8, 0.2, 1] });
+    }
+    img.src = item.src;
+    img.alt = item.cap;
     $('#plb-cap').textContent = item.cap + ' · ' + (curIdx + 1) + ' of ' + curItems.length;
   };
 
   const renderGrid = catId => {
-    activeCat = catId;
     const cat = PORTO_CATEGORIES.find(c => c.id === catId);
     curItems = cat ? cat.items : PORTO_CATEGORIES[0].items;
-    const isMotion = document.documentElement.classList.contains('m');
-    grid.innerHTML = curItems.map((item, i) => {
-      const delay = isMotion ? `style="--pd:${Math.min(i, 18) * 55}ms"` : '';
-      return `<button class="pshot" data-pi="${i}" aria-label="Open: ${item.cap}" ${delay}><div class="pframe"><img src="${item.src}" alt="${item.cap}" loading="lazy"></div><span class="pcap">${item.cap}</span></button>`;
-    }).join('');
+
+    if (useMotion && grid.children.length) {
+      animate(grid, { opacity: [1, 0], y: [0, 8] }, { duration: 0.18 }).then(() => {
+        buildGrid();
+        animateIn();
+      });
+    } else {
+      buildGrid();
+      if (useMotion) animateIn();
+    }
+  };
+
+  const buildGrid = () => {
+    grid.innerHTML = curItems.map((item, i) =>
+      `<button class="pshot" data-pi="${i}" aria-label="Open: ${item.cap}"><div class="pframe"><img src="${item.src}" alt="${item.cap}" loading="lazy"></div><span class="pcap">${item.cap}</span></button>`
+    ).join('');
+  };
+
+  const animateIn = () => {
+    const shots = grid.querySelectorAll('.pshot');
+    animate(shots, { opacity: [0, 1], y: [22, 0], scale: [0.96, 1] },
+      { duration: 0.5, delay: stagger(0.045, { start: 0 }), easing: [0.2, 0.8, 0.2, 1] });
+
+    shots.forEach(shot => {
+      const frame = shot.querySelector('.pframe');
+      shot.addEventListener('mouseenter', () => {
+        animate(frame, { y: -5, rotate: -0.4, scale: 1.025 }, { duration: 0.3, easing: [0.2, 0.8, 0.2, 1] });
+      });
+      shot.addEventListener('mouseleave', () => {
+        animate(frame, { y: 0, rotate: 0, scale: 1 }, { duration: 0.35, easing: [0.2, 0.8, 0.2, 1] });
+      });
+    });
   };
 
   tabHost.innerHTML = PORTO_CATEGORIES.map(c =>
     `<button role="tab" aria-selected="${c.id === 'all'}" data-cid="${c.id}">${c.label}</button>`
   ).join('');
 
+  if (useMotion) {
+    inView('#gallery', () => {
+      const h2 = document.querySelector('#gallery h2');
+      const p  = document.querySelector('#gallery .split.half p');
+      if (h2) animate(h2, { opacity: [0, 1], y: [30, 0] }, { duration: 0.7, easing: [0.2, 0.8, 0.2, 1] });
+      if (p)  animate(p,  { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, delay: 0.12, easing: [0.2, 0.8, 0.2, 1] });
+      animate(tabHost, { opacity: [0, 1], y: [14, 0] }, { duration: 0.5, delay: 0.22, easing: [0.2, 0.8, 0.2, 1] });
+    }, { amount: 0.15 });
+  }
+
   tabHost.addEventListener('click', e => {
     const b = e.target.closest('button');
-    if (!b) return;
+    if (!b || !b.dataset.cid) return;
     tabHost.querySelectorAll('button').forEach(x => x.setAttribute('aria-selected', x === b));
+    if (useMotion) {
+      animate(b, { scale: [0.93, 1] }, { duration: 0.25, easing: [0.2, 0.8, 0.2, 1] });
+    }
     renderGrid(b.dataset.cid);
   });
 
@@ -1724,14 +1769,33 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
     const b = e.target.closest('.pshot');
     if (!b) return;
     show(+b.dataset.pi);
-    dlg.showModal();
+    if (!dlg.open) {
+      if (useMotion) {
+        const box = dlg.querySelector('.box');
+        dlg.showModal();
+        animate(box, { opacity: [0, 1], scale: [0.92, 1], y: [16, 0] },
+          { duration: 0.35, easing: [0.2, 0.8, 0.2, 1] });
+      } else {
+        dlg.showModal();
+      }
+    }
   });
 
-  $('#plb-x').onclick = () => dlg.close();
+  const closeDialog = () => {
+    if (useMotion) {
+      const box = dlg.querySelector('.box');
+      animate(box, { opacity: [1, 0], scale: [1, 0.94], y: [0, 10] }, { duration: 0.22 }).then(() => dlg.close());
+    } else {
+      dlg.close();
+    }
+  };
+
+  $('#plb-x').onclick = closeDialog;
   $('#plb-prev').onclick = () => show(curIdx - 1);
   $('#plb-next').onclick = () => show(curIdx + 1);
-  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('click', e => { if (e.target === dlg) closeDialog(); });
   dlg.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); closeDialog(); }
     if (e.key === 'ArrowLeft') show(curIdx - 1);
     if (e.key === 'ArrowRight') show(curIdx + 1);
   });
@@ -1909,6 +1973,82 @@ $('#yr').textContent = new Date().getFullYear();
     track.classList.toggle('is-active', entry.isIntersecting);
   });
   observer.observe(track);
+})();
+
+/* Motion One — enhanced animations for sections */
+(() => {
+  if (!window.Motion || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const { animate, stagger, inView, scroll, timeline } = window.Motion;
+
+  /* Stats cards bounce in */
+  inView('#log .record', () => {
+    animate('#log .record > div',
+      { opacity: [0, 1], y: [24, 0], scale: [0.97, 1] },
+      { delay: stagger(0.07), duration: 0.55, easing: [0.2, 0.8, 0.2, 1] });
+  }, { amount: 0.2 });
+
+  /* Steps stagger */
+  inView('#how .steps', () => {
+    animate('#how .step',
+      { opacity: [0, 1], x: [-28, 0] },
+      { delay: stagger(0.1), duration: 0.6, easing: [0.2, 0.8, 0.2, 1] });
+  }, { amount: 0.15 });
+
+  /* Case cards */
+  inView('#cases-list', () => {
+    animate('#cases-list .case',
+      { opacity: [0, 1], y: [32, 0] },
+      { delay: stagger(0.09), duration: 0.6, easing: [0.2, 0.8, 0.2, 1] });
+  }, { amount: 0.1 });
+
+  /* Clock numbers count-up feel */
+  inView('#hours .clocks', () => {
+    animate('#hours .clock',
+      { opacity: [0, 1], y: [18, 0], scale: [0.95, 1] },
+      { delay: stagger(0.1), duration: 0.5, easing: [0.2, 0.8, 0.2, 1] });
+  }, { amount: 0.3 });
+
+  /* Log list items */
+  inView('#log-list', () => {
+    animate('#log-list li',
+      { opacity: [0, 1], x: [-16, 0] },
+      { delay: stagger(0.04, { start: 0 }), duration: 0.4, easing: [0.2, 0.8, 0.2, 1] });
+  }, { amount: 0.05 });
+
+  /* Scroll-linked hero parallax on the arch image */
+  const arch = document.querySelector('.arch');
+  if (arch) {
+    scroll(animate(arch, { y: [0, 60] }, { easing: 'linear' }), {
+      target: document.querySelector('.hero'),
+      offset: ['start start', 'end start']
+    });
+  }
+
+  /* Hover lift on nav links */
+  document.querySelectorAll('.nav ul a').forEach(a => {
+    a.addEventListener('mouseenter', () =>
+      animate(a, { y: -2 }, { duration: 0.2, easing: [0.2, 0.8, 0.2, 1] }));
+    a.addEventListener('mouseleave', () =>
+      animate(a, { y: 0 }, { duration: 0.25, easing: [0.2, 0.8, 0.2, 1] }));
+  });
+
+  /* Session shots hover */
+  document.querySelectorAll('#rail .shot').forEach(shot => {
+    const frame = shot.querySelector('.frame');
+    shot.addEventListener('mouseenter', () =>
+      animate(frame, { y: -6, rotate: -0.4 }, { duration: 0.3, easing: [0.2, 0.8, 0.2, 1] }));
+    shot.addEventListener('mouseleave', () =>
+      animate(frame, { y: 0, rotate: 0 }, { duration: 0.35, easing: [0.2, 0.8, 0.2, 1] }));
+  });
+
+  /* Essay card hover */
+  const essay = document.querySelector('.essay');
+  if (essay) {
+    essay.addEventListener('mouseenter', () =>
+      animate(essay, { y: -4, scale: 1.008 }, { duration: 0.35, easing: [0.2, 0.8, 0.2, 1] }));
+    essay.addEventListener('mouseleave', () =>
+      animate(essay, { y: 0, scale: 1 }, { duration: 0.4, easing: [0.2, 0.8, 0.2, 1] }));
+  }
 })();
 </script>
 </body>
