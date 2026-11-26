@@ -226,7 +226,69 @@ footer{border-top:1px solid var(--line);padding:26px 0 34px;font-size:.88rem;col
 footer .wrap{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between}
 
 
-/* ---------- case studies ---------- */
+/* ---------- portfolio gallery ---------- */
+#gallery{background:linear-gradient(180deg,var(--paper),rgba(251,238,241,.45),var(--paper))}
+#gallery .split.half{margin-bottom:0}
+.gal-tabs{margin:clamp(22px,3vw,38px) 0 clamp(18px,2.5vw,30px)}
+.pgrid{
+  columns:3 280px;
+  column-gap:14px;
+  margin-top:4px;
+}
+.pgrid .pshot{
+  display:block;
+  width:100%;
+  margin-bottom:14px;
+  break-inside:avoid;
+  border:0;
+  padding:0;
+  background:none;
+  cursor:zoom-in;
+  font:inherit;
+  color:inherit;
+  position:relative;
+}
+.pgrid .pshot .pframe{
+  border-radius:12px;
+  overflow:hidden;
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--line);
+  box-shadow:0 12px 32px -24px rgba(60,30,50,.5);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+}
+.pgrid .pshot:hover .pframe{
+  transform:translateY(-4px) rotate(-.25deg);
+  box-shadow:0 22px 42px -24px rgba(100,50,80,.55);
+}
+.pgrid .pshot img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.pgrid .pshot .pcap{
+  display:block;
+  margin-top:7px;
+  font:400 .72rem/1.4 var(--sans);
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--mute);
+  padding:0 2px;
+}
+.pgrid .pshot .pframe::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:12px;
+  background:rgba(196,100,127,0);
+  transition:background .3s;
+  pointer-events:none;
+}
+.pgrid .pshot:hover .pframe::after{background:rgba(196,100,127,.06)}
+@keyframes pshot-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.m .pgrid .pshot{opacity:0;animation:pshot-in .6s cubic-bezier(.2,.8,.2,1) var(--pd,0s) both}
+@media(max-width:600px){.pgrid{columns:2 140px}}
+
+
 .cases{border-top:1px solid var(--line)}
 .case{padding:40px 0 44px;border-bottom:1px solid var(--line)}
 .case-head h3{font-size:clamp(1.55rem,2.6vw,2.15rem)}
@@ -1077,6 +1139,7 @@ body{
       <li><a href="#how">How I work</a></li>
       <li><a href="#cases">Case studies</a></li>
       <li><a href="#sessions">Sessions</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#writing">Writing</a></li>
       <li><a href="#hours">Time zones</a></li>
     </ul></nav>
@@ -1240,6 +1303,23 @@ body{
 <dialog id="lb" aria-label="Session screenshot">
   <div class="box"><img id="lb-img" alt="">
     <div class="bar"><span id="lb-cap"></span><span><button id="lb-prev" aria-label="Previous">Previous</button> <button id="lb-next" aria-label="Next">Next</button> <button id="lb-x">Close</button></span></div>
+  </div>
+</dialog>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="split half" style="margin-bottom:clamp(28px,4vw,52px)">
+      <header data-r><h2>In the room</h2></header>
+      <p data-r style="--rd:.12s">Documentation from live sessions, offline training, coordination work at Ruangguru, and B/NDL content projects.</p>
+    </div>
+    <div class="gal-tabs tabs" id="gal-tabs" role="tablist"></div>
+    <div class="pgrid" id="pgrid" aria-live="polite"></div>
+  </div>
+</section>
+
+<dialog id="plb" aria-label="Portfolio image">
+  <div class="box"><img id="plb-img" alt="">
+    <div class="bar"><span id="plb-cap"></span><span><button id="plb-prev" aria-label="Previous">Previous</button> <button id="plb-next" aria-label="Next">Next</button> <button id="plb-x">Close</button></span></div>
   </div>
 </dialog>
 
@@ -1445,6 +1525,86 @@ const CASE_STUDIES = [
 ];
 </script>
 <script>
+/* =====================================================================
+   PORTFOLIO GALLERY DATA — semua file dari folder Porto-Itsnan
+   ===================================================================== */
+const PORTO_CATEGORIES = [
+  {
+    id: "all",
+    label: "All",
+    items: null
+  },
+  {
+    id: "virtual",
+    label: "Virtual Training",
+    items: [
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-08-01%20104628.png", cap: "1 Aug 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-08-04%20105944.png", cap: "4 Aug 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-08-08%20113252.png", cap: "8 Aug 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-08-29%20104328.png", cap: "29 Aug 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-09-04%20095648.png", cap: "4 Sep 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-09-11%20104211.png", cap: "11 Sep 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-09-15%20111002.png", cap: "15 Sep 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-09-19%20113710.png", cap: "19 Sep 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-09-20%20163332.png", cap: "20 Sep 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-09-25%20104922.png", cap: "25 Sep 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-09-26%20153746.png", cap: "26 Sep 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-10-03%20152646.png", cap: "3 Oct 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-10-04%20180010.png", cap: "4 Oct 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-10-10%20105324.png", cap: "10 Oct 2023" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20-%20Virtual%20Training/Screenshot%202023-10-16%20145613.png", cap: "16 Oct 2023" }
+    ]
+  },
+  {
+    id: "offline",
+    label: "Offline Training",
+    items: [
+      { src: "Porto-Itsnan/Offline%20Training/20c5f6e0-b71a-4a2f-88cc-4811d01093a9.jpg", cap: "Offline session" },
+      { src: "Porto-Itsnan/Offline%20Training/307e605a-68e1-4a10-96c3-3ea9f867b5fa.jpg", cap: "Offline session" },
+      { src: "Porto-Itsnan/Offline%20Training/322af28c-f2b7-49c5-ab33-c7e5ec3cee89.jpg", cap: "Offline session" },
+      { src: "Porto-Itsnan/Offline%20Training/39a3592b-a4b9-4871-8de5-635b7ba54005.jpg", cap: "Offline session" },
+      { src: "Porto-Itsnan/Offline%20Training/5535c8fa-9b5f-4724-9e08-0257e9caecae.jpg", cap: "Offline session" },
+      { src: "Porto-Itsnan/Offline%20Training/5f25d08e-b238-43a8-a4ab-5f64e0c28fdd.jpg", cap: "Offline session" },
+      { src: "Porto-Itsnan/Offline%20Training/7fa7bd45-1411-4c0d-b3e6-fa82f9d5aa1c.jpg", cap: "Offline session" },
+      { src: "Porto-Itsnan/Offline%20Training/9edc847c-e9b1-45d4-b575-a99dea0ee856.jpg", cap: "Offline session" }
+    ]
+  },
+  {
+    id: "ruangguru",
+    label: "Ruangguru",
+    items: [
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/059fc7d8-c16c-43d5-8941-27e49a18d8f2.jpg", cap: "Training Coordinator at Ruangguru" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/5bb4c30b-06da-4fd3-9c84-4ade0f7cfdb9.jpg", cap: "Training Coordinator at Ruangguru" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/70f44a84-0666-4f03-8c20-1d86518fbb32.jpg", cap: "Training Coordinator at Ruangguru" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/7bf82a55-fa28-4f02-9687-679790182c6a.jpg", cap: "Training Coordinator at Ruangguru" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/7eae3163-28bd-4529-964d-91ce026ec74d.jpg", cap: "Training Coordinator at Ruangguru" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/7f09a743-8976-46da-ac6d-341d1d728353.jpg", cap: "Training Coordinator at Ruangguru" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/8b2690ac-e90f-418a-bac1-e1f8d2cda8fa.jpg", cap: "Training Coordinator at Ruangguru" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/8f1fa822-4636-4b45-8375-621583243fb9.jpg", cap: "Training Coordinator at Ruangguru" },
+      { src: "Porto-Itsnan/Training%20Coordinator%20di%20Ruangguru/a42a6287-7e8d-4b53-8788-6d69ddf4d9ac.jpg", cap: "Training Coordinator at Ruangguru" }
+    ]
+  },
+  {
+    id: "bndl",
+    label: "B/NDL Projects",
+    items: [
+      { src: "Porto-Itsnan/Project%20B_NDL/Good%20Writing.png", cap: "Good Writing — B/NDL content" },
+      { src: "Porto-Itsnan/Project%20B_NDL/Good_Writing_feed.jpg", cap: "Good Writing feed post" },
+      { src: "Porto-Itsnan/Project%20B_NDL/Talk_Poster-feed_1.jpg", cap: "We Need to Talk poster" },
+      { src: "Porto-Itsnan/Project%20B_NDL/We%20Need%20to%20Talk.png", cap: "We Need to Talk — B/NDL content" }
+    ]
+  },
+  {
+    id: "field",
+    label: "Field Outreach",
+    items: [
+      { src: "Porto-Itsnan/Field%20Education%20Consultant%20Ruangguru%20-%20Webinar%20%26%20School%20Visit/Biru%20Persik%20Sapuan%20Kuas%20Hari%20Jomblo%20Sedunia%20Kiriman%20Instagram.png", cap: "Field Education Consultant — Ruangguru webinar & school visit" }
+    ]
+  }
+];
+PORTO_CATEGORIES[0].items = PORTO_CATEGORIES.slice(1).flatMap(c => c.items);
+</script>
+<script>
 /* ------- edit these three lines to update your contact details ------- */
 const PROFILE = {
   email: "",                       // e.g. "you@example.com"
@@ -1517,6 +1677,66 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
   $('#lb-x').onclick = () => dlg.close(); $('#lb-prev').onclick = () => show(cur - 1); $('#lb-next').onclick = () => show(cur + 1);
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+})();
+
+/* portfolio gallery */
+(() => {
+  const tabHost = $('#gal-tabs');
+  const grid = $('#pgrid');
+  const dlg = $('#plb');
+  if (!tabHost || !grid || !dlg) return;
+
+  let activeCat = 'all';
+  let curItems = [];
+  let curIdx = 0;
+
+  const show = i => {
+    curIdx = (i + curItems.length) % curItems.length;
+    const item = curItems[curIdx];
+    $('#plb-img').src = item.src;
+    $('#plb-img').alt = item.cap;
+    $('#plb-cap').textContent = item.cap + ' · ' + (curIdx + 1) + ' of ' + curItems.length;
+  };
+
+  const renderGrid = catId => {
+    activeCat = catId;
+    const cat = PORTO_CATEGORIES.find(c => c.id === catId);
+    curItems = cat ? cat.items : PORTO_CATEGORIES[0].items;
+    const isMotion = document.documentElement.classList.contains('m');
+    grid.innerHTML = curItems.map((item, i) => {
+      const delay = isMotion ? `style="--pd:${Math.min(i, 18) * 55}ms"` : '';
+      return `<button class="pshot" data-pi="${i}" aria-label="Open: ${item.cap}" ${delay}><div class="pframe"><img src="${item.src}" alt="${item.cap}" loading="lazy"></div><span class="pcap">${item.cap}</span></button>`;
+    }).join('');
+  };
+
+  tabHost.innerHTML = PORTO_CATEGORIES.map(c =>
+    `<button role="tab" aria-selected="${c.id === 'all'}" data-cid="${c.id}">${c.label}</button>`
+  ).join('');
+
+  tabHost.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    tabHost.querySelectorAll('button').forEach(x => x.setAttribute('aria-selected', x === b));
+    renderGrid(b.dataset.cid);
+  });
+
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('.pshot');
+    if (!b) return;
+    show(+b.dataset.pi);
+    dlg.showModal();
+  });
+
+  $('#plb-x').onclick = () => dlg.close();
+  $('#plb-prev').onclick = () => show(curIdx - 1);
+  $('#plb-next').onclick = () => show(curIdx + 1);
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') show(curIdx - 1);
+    if (e.key === 'ArrowRight') show(curIdx + 1);
+  });
+
+  renderGrid('all');
 })();
 
 /* time zones */
