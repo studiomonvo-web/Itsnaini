@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Itsnaini Nurfaizah · Learning Operations and Programme Coordination, remote</title>
-<meta name="description" content="I make learning programmes work, beyond the classroom. Training Coordinator coordinating participants, facilitators, schedules, sessions and records for live programmes since 2023. Indonesia (UTC+7). Open to remote learning operations roles with UK and US teams.">
+<meta name="description" content="Training Coordinator and Learning Data & Insights contributor coordinating corporate and public learning programmes, CRM, evaluation and sales capability. Indonesia (UTC+7), open to remote roles with UK and US teams.">
 <meta property="og:title" content="Itsnaini Nurfaizah · Learning Operations and Programme Coordination">
-<meta property="og:description" content="I make learning programmes work, beyond the classroom. Open to remote roles with UK and US teams.">
+<meta property="og:description" content="From education sales and capability development to programme operations and learning insights. Open to remote roles with UK and US teams.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#FBFAFB">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'%3E%3Cg%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(0)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(72)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(144)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(216)'/%3E%3Cpath d='M0,0 C-10,-5 -10,-17 -2,-18 L0,-15 L2,-18 C10,-17 10,-5 0,0Z' fill='%23F4C4D0' stroke='%23C4647F' transform='rotate(288)'/%3E%3Ccircle r='3' fill='%23D9AE62'/%3E%3C/g%3E%3C/svg%3E">
@@ -94,8 +94,6 @@ p{max-width:62ch}
 .arch-cap{margin-top:22px;font-size:.92rem;color:var(--mute);max-width:36ch}
 .wash{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:-1}
 @media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.arch-wrap{width:min(78%,400px);margin-top:12px}.hero-flora{left:-8%;width:116%}}
-.hero .wrap>div:first-child{min-width:0}
-.hero h1{width:100%;max-width:100%}.arch-wrap{width:min(78%,400px);margin-top:12px}.hero-flora{left:-8%;width:116%}}
 
 /* hero entrance: one orchestrated moment */
 .hero-flora .stem{stroke-dasharray:1;stroke-dashoffset:1}
@@ -610,69 +608,6 @@ footer{letter-spacing:.055em}
   .track{transform:none}
 }
 
-/* ---------- video entry ---------- */
-.intro{
-  position:fixed;
-  inset:0;
-  z-index:999;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  background:var(--ink);
-  transition:opacity 1s cubic-bezier(.7,0,.2,1),visibility 1s;
-}
-.intro video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:saturate(.72) sepia(.05);
-  opacity:.82;
-  transform:scale(1.025);
-  transition:transform 1.8s cubic-bezier(.2,.8,.2,1),filter 1.2s;
-}
-.intro::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(43,27,46,.12),rgba(43,27,46,.72));
-  pointer-events:none;
-}
-.intro-open{
-  padding:18px 24px;
-  position:relative;
-  z-index:2;
-  border:1px solid rgba(254,252,251,.72);
-  border-radius:999px;
-  background:rgba(43,27,46,.18);
-  backdrop-filter:blur(12px);
-  color:#fff;
-  font:500 .72rem/1 var(--sans);
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s,color .35s;
-}
-.intro-open:hover{
-  transform:scale(1.055);
-  background:var(--paper);
-  color:var(--ink);
-}
-.intro.is-entering video{
-  transform:scale(1);
-  filter:saturate(.9);
-}
-.intro.is-entering{
-  clip-path:circle(150% at 50% 50%);
-  transition:clip-path .72s cubic-bezier(.7,0,.2,1),opacity .65s,visibility 0s .72s;
-}
-.intro.is-open{
-  clip-path:circle(0 at 50% 50%);
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
 .cursor-dot{
   position:fixed;
   z-index:1000;
@@ -732,15 +667,13 @@ footer{letter-spacing:.055em}
 .shot:hover img{transform:scale(1.035) skewX(-.35deg);filter:saturate(1.06) contrast(1.015);clip-path:polygon(0 1%,22% 0,48% 1%,76% 0,100% 1%,99% 34%,100% 68%,99% 100%,74% 99%,48% 100%,22% 99%,0 100%,1% 68%,0 34%)}
 @media(max-width:720px){.shot:hover img{transform:scale(1.015);filter:none}}
 @media(pointer:fine){
-  body.intro-active,body.intro-active *{cursor:none}
-  body:not(.intro-active) .cursor-dot,body:not(.intro-active) .cursor-ring{opacity:1}
-  body:not(.intro-active) .cursor-dot.cursor-hover{width:15px;height:15px;background:var(--rose)}
-  body:not(.intro-active) .cursor-ring.cursor-hover{width:54px;height:54px;border-color:var(--rose-deep)}
+  .cursor-dot,.cursor-ring{opacity:1}
+  .cursor-dot.cursor-hover{width:15px;height:15px;background:var(--rose)}
+  .cursor-ring.cursor-hover{width:54px;height:54px;border-color:var(--rose-deep)}
 }
 @media(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
 @media(prefers-reduced-motion:reduce){
   .cursor-dot,.cursor-ring{display:none}
-  .intro.is-entering{clip-path:none}
   .flora-reveal::before,.flora-reveal.is-revealed::before{clip-path:none}
   .page-wipe{display:none}
   .m .hero h1,.m .hero .lede,.m .split>header h2[data-r]{clip-path:none;opacity:1;animation:none}
@@ -810,14 +743,23 @@ footer{letter-spacing:.055em}
 #log .log{border-top:1px solid var(--line)}
 #how{padding-block:clamp(72px,9vw,120px);background:linear-gradient(180deg,var(--paper),rgba(251,238,241,.62),var(--paper))}
 #how .split>header .sticky{margin:0 auto}
-#how .steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:46px;padding:0}
+#how .steps{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin-top:46px;padding:0}
 #how .step{display:block;padding:28px 26px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.82)}
 #how .step .node{position:static;width:46px;height:46px;margin:0 0 20px;background:var(--paper)}
 #how .step h3{margin:0 0 10px;font-size:1.7rem}
 #how .step p{font-size:.94rem}
 #how .skills{justify-content:center}
 #cases .split>header .sticky{margin:0 auto 42px}
-#cases .cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;border:0}
+#career-journey{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 24px;padding:0;list-style:none}
+.journey-card{display:block;height:100%;padding:22px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.92);color:var(--ink);text-decoration:none;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s}
+.journey-card:hover{transform:translateY(-3px);border-color:var(--rose);box-shadow:0 16px 32px -28px rgba(48,37,49,.55)}
+.journey-card .date{display:block;margin-bottom:16px;color:var(--rose-deep);font:500 .66rem/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase}
+.journey-card h3{margin:0 0 9px;font-size:1.35rem;line-height:1.08}
+.journey-card .role{display:block;margin-bottom:10px;color:var(--ink-2);font-size:.76rem;line-height:1.5}
+.journey-card .detail{display:block;color:var(--mute);font-size:.85rem;line-height:1.58}
+#career-journey+.cases{margin-top:0}
+#cases .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:18px;border:0}
+#cases-list .case:last-child{grid-column:1/-1;width:min(100%,760px);justify-self:center}
 #cases-list .case,#cases-list .case:nth-child(even),#cases-list .case:nth-child(odd){
   display:block;
   margin:0;
@@ -831,6 +773,19 @@ footer{letter-spacing:.055em}
 #cases-list .case .case-head{margin:0 0 20px}
 #cases-list .case .case-body{margin:0}
 #cases-list .case .skills{grid-column:auto;grid-row:auto;margin:22px 0 0}
+.case-workflow{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.case-workflow h4,.case-media h4{margin:0 0 12px;color:var(--rose-deep);font:500 .68rem/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase}
+.workflow-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,132px),1fr));gap:8px;list-style:none;padding:0}
+.workflow-steps li{position:relative;min-width:0;padding:14px 12px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.workflow-steps b{display:block;margin-bottom:8px;color:var(--rose-deep);font:500 .62rem/1 var(--sans);letter-spacing:.1em}
+.workflow-steps strong{display:block;font:400 .98rem/1.15 var(--serif)}
+.workflow-steps span{display:block;margin-top:6px;color:var(--mute);font-size:.76rem;line-height:1.45}
+.case-media{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.case-media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.case-media figure{overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#fff}
+.case-media img{width:100%;height:auto;aspect-ratio:4/5;object-fit:contain;background:#fff}
+.case-media figcaption{padding:10px 12px 12px;color:var(--ink-2);font-size:.8rem;line-height:1.45}
+.case-media figcaption strong{display:block;margin-bottom:3px;color:var(--ink);font-weight:500}
 #sessions .split.half{margin:0 auto 30px!important;text-align:center}
 #sessions .rail{
   display:grid;
@@ -899,14 +854,19 @@ footer .wrap{justify-content:center;text-align:center;gap:10px 24px;padding-top:
 @media(max-width:900px){
   #sessions .rail{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+@media(min-width:761px) and (max-width:980px){
+  #career-journey{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #how .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #how .step:nth-child(3){grid-column:1/-1;width:calc((100% - 16px)/2);justify-self:center}
+}
 @media(max-width:760px){
+  #career-journey{grid-template-columns:1fr}
   .nav .wrap{min-height:56px}
   .hero{padding-top:120px}
   .hero .arch-wrap{width:clamp(190px,42vw,260px)}
   .hero .facts{grid-template-columns:1fr}
   #log .record{grid-template-columns:1fr}
-  #how .steps{grid-template-columns:1fr;margin-top:32px}
-  #cases .cases{grid-template-columns:1fr}
+  #how .steps{margin-top:32px}
   #writing .essay{grid-template-columns:1fr}
   #writing .med-art{max-width:230px;justify-self:center}
   #sessions .rail{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -925,6 +885,16 @@ footer .wrap{justify-content:center;text-align:center;gap:10px 24px;padding-top:
 #writing .split>p{max-width:540px;margin:16px auto 0;line-height:1.6;text-align:center}
 #writing .photo-credit{max-width:1060px;margin:10px auto 0;color:var(--mute);font-size:.68rem;line-height:1.5;text-align:right}
 #writing .photo-credit a{text-underline-offset:3px}
+.roles-trigger{font:inherit;cursor:pointer}
+#roles-dialog{width:min(520px,calc(100% - 32px));max-width:520px;padding:0;color:var(--ink)}
+#roles-dialog .role-box{position:relative;padding:clamp(28px,6vw,48px);border:1px solid var(--line);border-radius:16px;background:var(--paper);box-shadow:0 24px 80px -36px rgba(48,37,49,.55)}
+#roles-dialog .role-eyebrow{font:500 .68rem/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rose-deep)}
+#roles-dialog h2{max-width:12ch;margin:12px 0 14px;font-size:clamp(2rem,7vw,3rem);line-height:1.02}
+#roles-dialog .role-intro{color:var(--ink-2);font-size:.96rem}
+#roles-dialog ul{display:grid;gap:10px;list-style:none;padding:0;margin:24px 0 0}
+#roles-dialog li{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;font-family:var(--serif);font-size:1.08rem}
+#roles-dialog .role-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);font:400 1.3rem/1 var(--sans);cursor:pointer}
+#roles-dialog .role-close:hover{background:var(--petal)}
 @media(max-width:760px){#writing .photo-credit{text-align:center}}
 @media(prefers-reduced-motion:no-preference){.m #writing.is-revealed::before{clip-path:ellipse(150% 145% at 52% 50%)}}
 .m .hero h1.typewriter{clip-path:none}
@@ -1087,7 +1057,7 @@ body{
 }
 </style>
 </head>
-<body>
+<body class="motion-ready">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <radialGradient id="petalGrad" cx="50%" cy="85%" r="95%"><stop offset="0" stop-color="#F2B8C6"/><stop offset=".55" stop-color="#F8D8E0"/><stop offset="1" stop-color="#FDF1F4"/></radialGradient>
 <radialGradient id="petalGrad2" cx="50%" cy="85%" r="95%"><stop offset="0" stop-color="#E6D4F0"/><stop offset=".6" stop-color="#F3EAF8"/><stop offset="1" stop-color="#FCF9FE"/></radialGradient>
@@ -1095,10 +1065,6 @@ body{
 </defs></svg>
 <a class="skip" href="#log">Skip to the training log</a>
 
-<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Portfolio introduction">
-  <video id="intro-video" src="assets/intro/video.mp4" muted playsinline autoplay loop preload="auto" aria-hidden="true"></video>
-  <button class="intro-open" id="intro-open" type="button" aria-label="Enter portfolio">Enter portfolio</button>
-</div>
 <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
 <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 <div class="page-wipe" id="page-wipe" aria-hidden="true"></div>
@@ -1114,9 +1080,24 @@ body{
       <li><a href="#writing">Writing</a></li>
       <li><a href="#hours">Time zones</a></li>
     </ul></nav>
-    <a class="pill" href="#contact"><span>Open to <span class="long">remote </span>roles</span></a>
+    <button class="pill roles-trigger" type="button" aria-haspopup="dialog" aria-controls="roles-dialog"><span>Open to <span class="long">remote </span>roles</span></button>
   </div>
 </header>
+
+<dialog id="roles-dialog" aria-labelledby="roles-title">
+  <div class="role-box">
+    <button class="role-close" type="button" aria-label="Close roles popup">&times;</button>
+    <p class="role-eyebrow">Open to remote opportunities</p>
+    <h2 id="roles-title">Roles I'm looking for</h2>
+    <p class="role-intro">Based in Indonesia (UTC+7), interested in working remotely with UK and US teams.</p>
+    <ul>
+      <li>Learning operations &amp; programme coordination</li>
+      <li>Learning &amp; development / training coordination</li>
+      <li>Learning data &amp; insights</li>
+      <li>Sales enablement &amp; capability development</li>
+    </ul>
+  </div>
+</dialog>
 
 <main id="top">
 <section class="hero">
@@ -1124,13 +1105,13 @@ body{
   <div class="wash" style="width:360px;height:360px;background:#E7DFF5;right:-80px;bottom:-60px;opacity:.8"></div>
   <div class="wrap">
     <div>
-      <a class="pill" href="#contact" style="text-decoration:none">Open to remote learning operations roles, UK and US</a>
+      <button class="pill roles-trigger" type="button" aria-haspopup="dialog" aria-controls="roles-dialog">Open to remote learning operations roles, UK and US</button>
       <h1>I make learning<br>programmes work,<br><span class="in3">beyond the classroom.</span></h1>
-      <p class="lede">I am a Training Coordinator at B/NDL Studios, a communication training company in Indonesia. I keep the moving parts of a learning programme organised: participants, facilitators, schedules, communication, live sessions, records and follow-up. Since 2023 that has covered remote, in-person and hybrid programmes for banks, government bodies, energy companies, media houses and UN agencies.</p>
+      <p class="lede">At Ruangguru (2019–2023), I moved from consultative education sales into Training &amp; Development and sales capability. Since 2023 at B/NDL Studios, I coordinate corporate and public learning programmes; in 2026, I also took on CRM and Learning Data &amp; Insights work. My experience connects customer engagement, capability development and learning operations across remote, in-person and hybrid delivery.</p>
       <ul class="facts">
         <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 14s5-4.2 5-8A5 5 0 0 0 3 6c0 3.8 5 8 5 8Z"/><circle cx="8" cy="6" r="1.8"/></svg>Indonesia, working from UTC+7</li>
-        <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="9" rx="2"/><path d="M6 14h4"/></svg>Remote, in-person and hybrid programmes, 2023 to today</li>
-        <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5.5 6h5M5.5 8.5h5M5.5 11h3"/></svg>Writes on measuring learning beyond completion rates</li>
+        <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="9" rx="2"/><path d="M6 14h4"/></svg>53 corporate programmes, 14 public courses, 1,000+ participants</li>
+        <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5.5 6h5M5.5 8.5h5M5.5 11h3"/></svg>2,500+ CRM leads across five public course campaigns</li>
       </ul>
       <div class="ctas">
         <a class="btn solid" href="#log">See the delivery record</a>
@@ -1212,9 +1193,35 @@ body{
   <div class="wrap">
     <div class="split">
       <header><div class="sticky">
-        <h2>Selected case studies</h2>
-        <p>Selected examples of programme coordination, learning delivery, and learning measurement.</p>
+        <h2>How my work has grown</h2>
+        <p>My path connects understanding learners, developing people, running learning programmes and using data to improve what happens next. Explore a career stage or read the detailed case studies below.</p>
       </div></header>
+      <ol id="career-journey" aria-label="Career journey">
+        <li><a class="journey-card" href="#case-education-sales">
+          <span class="date">2019–2020 · Ruangguru</span>
+          <h3>Understand the learner</h3>
+          <span class="role">Field Education Consultant → Senior Field Education Consultant</span>
+          <span class="detail">Learning consultations, webinars and school engagement; 2,000+ prospective leads and 700+ students across 50+ schools.</span>
+        </a></li>
+        <li><a class="journey-card" href="#case-sales-capability">
+          <span class="date">2020–2023 · Ruangguru</span>
+          <h3>Develop people</h3>
+          <span class="role">Training &amp; Development · Deputy Lead, Sales Trainee Academy (STAR)</span>
+          <span class="detail">Built sales resources and supported Field Education Consultant capability across 33 regions.</span>
+        </a></li>
+        <li><a class="journey-card" href="#case-learning-operations">
+          <span class="date">2023–present · B/NDL Studios</span>
+          <h3>Manage learning experiences</h3>
+          <span class="role">Training Coordinator</span>
+          <span class="detail">Coordinate corporate and public learning programmes from planning through delivery and follow-up.</span>
+        </a></li>
+        <li><a class="journey-card" href="#case-customer-data">
+          <span class="date">2026–present · B/NDL Studios</span>
+          <h3>Turn data into decisions</h3>
+          <span class="role">Learning Data &amp; Insights assignment</span>
+          <span class="detail">Connect CRM organisation, campaign planning and training evaluation to clearer audience and learning insights.</span>
+        </a></li>
+      </ol>
       <div class="cases" id="cases-list"></div>
     </div>
   </div>
@@ -1289,105 +1296,151 @@ body{
 
 <footer><div class="wrap"><span>© <span id="yr">2026</span> Itsnaini Nurfaizah</span><span>Indonesia · <span id="local">--:--</span> local time</span></div></footer>
 
-<script id="log-data" type="application/json">{"rows": [{"y": 2023, "org": "The Jakarta Post", "detail": "", "course": "Business Correspondence", "when": "12 Jan – 20 Feb", "fmt": "", "cgf": false}, {"y": 2023, "org": "Enesis Group", "detail": "", "course": "Content Writing and Other Stories", "when": "16 Jan – 2 Feb", "fmt": "", "cgf": false}, {"y": 2023, "org": "MMS Group", "detail": "", "course": "Content Writing and Other Stories", "when": "18 Jan – 8 Feb", "fmt": "In person", "cgf": false}, {"y": 2023, "org": "Enesis Group", "detail": "", "course": "Modern Media Release", "when": "6–27 Feb", "fmt": "", "cgf": false}, {"y": 2023, "org": "AHP", "detail": "", "course": "Business Correspondence", "when": "31 Jan – 10 Mar", "fmt": "", "cgf": false}, {"y": 2023, "org": "MMS Group", "detail": "", "course": "Modern Media Release", "when": "8 Mar – 5 Apr", "fmt": "In person", "cgf": false}, {"y": 2023, "org": "Private client", "detail": "", "course": "Content Writing", "when": "21 Feb – 13 Mar", "fmt": "", "cgf": false}, {"y": 2023, "org": "Traveloka", "detail": "", "course": "Winning Presentation", "when": "27 Feb – 10 Apr", "fmt": "Remote", "cgf": false}, {"y": 2023, "org": "Ministry of Foreign Affairs", "detail": "Sesdilu 74, Batch A", "course": "Persuasive Writing", "when": "13 Mar – 13 Apr", "fmt": "Remote", "cgf": false}, {"y": 2023, "org": "Ministry of Foreign Affairs", "detail": "Sesdilu 74, Batch B", "course": "Persuasive Writing", "when": "13 Mar – 13 Apr", "fmt": "Remote", "cgf": false}, {"y": 2023, "org": "Supreme Energy", "detail": "", "course": "Content Writing", "when": "Date to confirm", "fmt": "", "cgf": false}, {"y": 2023, "org": "Ministry of Foreign Affairs", "detail": "Sesparlu 72, Batch A", "course": "Speechwriting and Storytelling", "when": "11 Apr – 19 May", "fmt": "Remote", "cgf": false}, {"y": 2023, "org": "Ministry of Foreign Affairs", "detail": "Sesparlu 72, Batch B", "course": "Speechwriting and Storytelling", "when": "11 Apr – 19 May", "fmt": "Remote", "cgf": false}, {"y": 2023, "org": "East Ventures", "detail": "", "course": "Business Communication", "when": "15 May – 19 June", "fmt": "", "cgf": false}, {"y": 2023, "org": "Shell Indonesia", "detail": "", "course": "Persuasive Communication", "when": "22 May – 13 June", "fmt": "", "cgf": false}, {"y": 2023, "org": "The Jakarta Post", "detail": "", "course": "Winning Presentation Skill", "when": "9 May – 7 June", "fmt": "", "cgf": false}, {"y": 2023, "org": "The Jakarta Post", "detail": "", "course": "Critical Reading & Writing", "when": "Date to confirm", "fmt": "", "cgf": false}, {"y": 2023, "org": "The Jakarta Post", "detail": "", "course": "Business Correspondence", "when": "21 June – 9 Aug", "fmt": "", "cgf": false}, {"y": 2023, "org": "AHP", "detail": "", "course": "Business Correspondence", "when": "7–28 July", "fmt": "In person", "cgf": false}, {"y": 2023, "org": "ENI Indonesia", "detail": "Batch 1", "course": "Business Correspondence", "when": "11–20 July", "fmt": "In person", "cgf": false}, {"y": 2023, "org": "ENI Indonesia", "detail": "Batch 2", "course": "Business Correspondence", "when": "Date to confirm", "fmt": "In person", "cgf": false}, {"y": 2023, "org": "ENI Indonesia", "detail": "Batch 3", "course": "Business Correspondence", "when": "Date to confirm", "fmt": "In person", "cgf": false}, {"y": 2023, "org": "UNDP", "detail": "Batch 1", "course": "Data Communication", "when": "1–25 Aug 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "UNDP", "detail": "Batch 2", "course": "Data Communication", "when": "29 Aug – 22 Sep 2023", "fmt": "Remote", "cgf": false}, {"y": 2023, "org": "UNDP", "detail": "Batch 3", "course": "Data Communication", "when": "18 Sep – 13 Oct 2023", "fmt": "Remote", "cgf": false}, {"y": 2023, "org": "Ministry of Foreign Affairs", "detail": "Sesdilu 75", "course": "Persuasive Writing", "when": "29 Aug – 26 Sep 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "Traveloka", "detail": "Batch 1", "course": "Narrative Alchemy", "when": "29 & 31 Aug 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "Traveloka", "detail": "Batch 2", "course": "Narrative Alchemy", "when": "24 & 26 Oct 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "Mekari", "detail": "", "course": "Business Report Writing", "when": "19 Sep – 13 Oct 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "East Ventures", "detail": "Batch 2", "course": "Business Communication", "when": "11 Sep – 6 Nov 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "East Ventures", "detail": "Batch 3", "course": "Business Communication", "when": "14 Sep – 16 Nov 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "Serac Asia", "detail": "Batch 1", "course": "Business Report Writing", "when": "12 Sep – 6 Oct 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "Serac Asia", "detail": "Batch 2", "course": "Business Report Writing", "when": "12 Sep – 12 Oct 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "Kiroyan Partners", "detail": "", "course": "Business Report Writing", "when": "20 Sep – 15 Nov 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "Marriott International", "detail": "", "course": "Content Writing and Other Stories", "when": "17 Oct – 5 Dec 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "ENI Indonesia", "detail": "", "course": "Narrative Alchemy Bootcamp", "when": "21–22 Dec 2023", "fmt": "", "cgf": false}, {"y": 2023, "org": "CPOPC", "detail": "", "course": "Storycraft Bootcamp for Business Excellence", "when": "18–19 Dec 2023", "fmt": "", "cgf": false}, {"y": 2024, "org": "Ministry of Foreign Affairs", "detail": "Sesdilu 76", "course": "Storycraft for Persuasive Writing and Communication", "when": "15 & 19 Mar 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "MedcoEnergi", "detail": "", "course": "From Insight to Impact: Storycraft for Business Communication", "when": "20–21 Mar 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "BP Indonesia", "detail": "", "course": "Business Report Writing and Persuasive Communication", "when": "22 May – 12 June 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "BP Indonesia", "detail": "Top Talent I", "course": "Communicate with Impact: Empowering Future Leaders Top Talent I", "when": "4–25 July 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "BP Indonesia", "detail": "Top Talent II", "course": "Communicate with Impact: Empowering Future Leaders Top Talent II", "when": "8–29 Aug 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "BP Indonesia", "detail": "Power Writing", "course": "Power Writing for Business", "when": "4 Sep – 16 Oct 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "Ministry of Foreign Affairs", "detail": "Sesdilu 77", "course": "From Ideas to Impact: Speech and Concept Note Development", "when": "15–16 Aug 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "NLR Indonesia", "detail": "", "course": "Mastering Report Writing and Development", "when": "18–19 July 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "Austindo Nusantara Jaya", "detail": "", "course": "Storycraft for Strategic Narratives: Mastering Business Report Writing", "when": "23 Aug – 10 Oct 2024", "fmt": "Hybrid", "cgf": false}, {"y": 2024, "org": "HSBC", "detail": "", "course": "Mastering Clear and Effective Writing", "when": "18 Oct 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "Tiket.com", "detail": "", "course": "Content Writing and Development", "when": "3–17 Sep 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "BASF Indonesia", "detail": "", "course": "Creative Thinking for Marketers", "when": "5 Nov 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "AMINEF", "detail": "", "course": "Mastering Presentation Development and Delivery", "when": "13–14 Nov 2024", "fmt": "In person", "cgf": false}, {"y": 2024, "org": "Beiersdorf Indonesia", "detail": "", "course": "Data and the Power of Persuasion in Healthcare Industry", "when": "4 Dec 2024", "fmt": "In person", "cgf": false}, {"y": 2025, "org": "OCBC", "detail": "", "course": "Strategic Communication Skills for Leadership Support", "when": "20,21,25 Feb 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "Kemitraan Indonesia", "detail": "", "course": "Communicating with Impact - On Writing and Presenting Report", "when": "17 & 18 Feb 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "HBT", "detail": "Batch 1", "course": "Effective Writing and Critical Reading for Professionals Course", "when": "4 Feb – 29 Apr 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "HBT", "detail": "Batch 2", "course": "Effective Writing and Critical Reading for Professionals Course", "when": "7 Feb – 16 May 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "HBT", "detail": "Dispute", "course": "Strategic Business Writing for Legal Professionals Course - Dispute", "when": "7 Feb – 22 Aug 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "British Embassy", "detail": "", "course": "Effective Press Release and Modern Media Release Writing", "when": "4–5 Feb 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "Artotel Group", "detail": "", "course": "Content Writing Fundamentals for the Hospitality Industry", "when": "23 Apr 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "Sun Life Indonesia", "detail": "", "course": "CGF Model Seminar: The Hidden Structure of Clear Communication, A Thinking Model", "when": "21 May 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "Henan Asset Management", "detail": "", "course": "Strategic Communications: Building Impactful Business Narratives", "when": "11 June 2025 & Sep 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "RGE Indonesia", "detail": "", "course": "Strategic Communication Across Platform - From Captions to Compelling Narratives", "when": "14–15 Apr 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "Sun Life Indonesia", "detail": "", "course": "Dynamic Data Presentations and Humanizing A.I.", "when": "17 July & 15 Oct 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "Sun Life Indonesia", "detail": "", "course": "Proposal Writing", "when": "13–14 Nov 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "Australian Embassy", "detail": "Cohort 1", "course": "Strategic Writing for Reports, Essays, and Business Correspondence", "when": "10–11 June 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "Australian Embassy", "detail": "Cohort 2", "course": "Strategic Writing for Reports, Essays, and Business Correspondence", "when": "8 & 17 Sep 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "Australian Embassy", "detail": "Cohort 3", "course": "Strategic Writing for Reports, Essays, and Business Correspondence", "when": "22 & 29 Oct 2025", "fmt": "", "cgf": false}, {"y": 2025, "org": "The Jakarta Post", "detail": "", "course": "Executive Clarity: Communicating with Precision, Ownership, and Impact", "when": "17 Aug – 16 Sep 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "UNDP", "detail": "", "course": "From Facts to Stories", "when": "24, 25 Sep & 8 Oct 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "Zurich Indonesia", "detail": "", "course": "Strategic Communication Alignment", "when": "20 Oct 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "Standard Chartered", "detail": "Technical Writing", "course": "Technical Writing for Professionals", "when": "26–27 Nov 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "Standard Chartered", "detail": "Proposal Writing", "course": "Proposal Writing", "when": "19 Dec 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "Austrade", "detail": "Cohort 1", "course": "Content and Narrative Writing", "when": "17 Dec 2025", "fmt": "", "cgf": true}, {"y": 2025, "org": "Austrade", "detail": "Cohort 2", "course": "Content and Narrative Writing", "when": "12 Jan 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "The Jakarta Post", "detail": "", "course": "Leadership Communication", "when": "12 Feb – 5 Mar 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "Sun Life Indonesia", "detail": "", "course": "Data, Insights, and Stories", "when": "14–15 Apr 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "RGE Indonesia", "detail": "", "course": "Writing and Documentation", "when": "22–23 Apr 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "OJK", "detail": "", "course": "Strategic Persuasion – Making the Case: Data, Logic, Influence", "when": "24 Jun 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "OJK", "detail": "", "course": "Strategic Persuasion – Making the Case: Data, Logic, Influence", "when": "26 June, 2 & 3 July 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "OJK", "detail": "", "course": "From Data to Decision – Turning Information into Strategic Conversations", "when": "26 June, 2 & 3 July 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "Tirta Nusa Buana", "detail": "", "course": "Driving Clarity, Accountability and Alignment in Leadership", "when": "20 & 21 July 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "MedcoEnergi", "detail": "", "course": "Writing & Documentation", "when": "12 Aug 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "BCA", "detail": "", "course": "From Drafts to Direction", "when": "15–16 Oct 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "BCA", "detail": "", "course": "From Drafts to Direction", "when": "18–19 Nov 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "Standard Chartered", "detail": "", "course": "Pitch & Persuasion", "when": "15 Sep, 10, 16, 26 Nov 2026", "fmt": "", "cgf": true}, {"y": 2026, "org": "DBS Indonesia", "detail": "", "course": "Executive Writing Essentials", "when": "8 Oct 2026", "fmt": "", "cgf": true}], "stats": {"cohorts": 85, "orgs": 41, "byYear": {"2023": 37, "2024": 14, "2025": 22, "2026": 12}}}</script>
+<script id="log-data" type="application/json">{"rows":[{"y":2023,"org":"The Jakarta Post","detail":"","course":"Business Correspondence","when":"12 Jan – 20 Feb","fmt":"","cgf":false},{"y":2023,"org":"Enesis Group","detail":"","course":"Content Writing and Other Stories","when":"16 Jan – 2 Feb","fmt":"","cgf":false},{"y":2023,"org":"MMS Group","detail":"","course":"Content Writing and Other Stories","when":"18 Jan – 8 Feb","fmt":"In person","cgf":false},{"y":2023,"org":"Enesis Group","detail":"","course":"Modern Media Release","when":"6–27 Feb","fmt":"","cgf":false},{"y":2023,"org":"AHP","detail":"","course":"Business Correspondence","when":"31 Jan – 10 Mar","fmt":"","cgf":false},{"y":2023,"org":"MMS Group","detail":"","course":"Modern Media Release","when":"8 Mar – 5 Apr","fmt":"In person","cgf":false},{"y":2023,"org":"Private client","detail":"","course":"Content Writing","when":"21 Feb – 13 Mar","fmt":"","cgf":false},{"y":2023,"org":"Traveloka","detail":"","course":"Winning Presentation","when":"27 Feb – 10 Apr","fmt":"Remote","cgf":false},{"y":2023,"org":"Ministry of Foreign Affairs","detail":"Sesdilu 74, Batch A","course":"Persuasive Writing","when":"13 Mar – 13 Apr","fmt":"Remote","cgf":false},{"y":2023,"org":"Ministry of Foreign Affairs","detail":"Sesdilu 74, Batch B","course":"Persuasive Writing","when":"13 Mar – 13 Apr","fmt":"Remote","cgf":false},{"y":2023,"org":"Supreme Energy","detail":"","course":"Content Writing","when":"Date to confirm","fmt":"","cgf":false},{"y":2023,"org":"Ministry of Foreign Affairs","detail":"Sesparlu 72, Batch A","course":"Speechwriting and Storytelling","when":"11 Apr – 19 May","fmt":"Remote","cgf":false},{"y":2023,"org":"Ministry of Foreign Affairs","detail":"Sesparlu 72, Batch B","course":"Speechwriting and Storytelling","when":"11 Apr – 19 May","fmt":"Remote","cgf":false},{"y":2023,"org":"East Ventures","detail":"","course":"Business Communication","when":"15 May – 19 June","fmt":"","cgf":false},{"y":2023,"org":"Shell Indonesia","detail":"","course":"Persuasive Communication","when":"22 May – 13 June","fmt":"","cgf":false},{"y":2023,"org":"The Jakarta Post","detail":"","course":"Winning Presentation Skill","when":"9 May – 7 June","fmt":"","cgf":false},{"y":2023,"org":"The Jakarta Post","detail":"","course":"Critical Reading & Writing","when":"Date to confirm","fmt":"","cgf":false},{"y":2023,"org":"The Jakarta Post","detail":"","course":"Business Correspondence","when":"21 June – 9 Aug","fmt":"","cgf":false},{"y":2023,"org":"AHP","detail":"","course":"Business Correspondence","when":"7–28 July","fmt":"In person","cgf":false},{"y":2023,"org":"ENI Indonesia","detail":"Batch 1","course":"Business Correspondence","when":"11–20 July","fmt":"In person","cgf":false},{"y":2023,"org":"ENI Indonesia","detail":"Batch 2","course":"Business Correspondence","when":"Date to confirm","fmt":"In person","cgf":false},{"y":2023,"org":"ENI Indonesia","detail":"Batch 3","course":"Business Correspondence","when":"Date to confirm","fmt":"In person","cgf":false},{"y":2023,"org":"UNDP","detail":"Batch 1","course":"Data Communication","when":"1–25 Aug 2023","fmt":"","cgf":false},{"y":2023,"org":"UNDP","detail":"Batch 2","course":"Data Communication","when":"29 Aug – 22 Sep 2023","fmt":"Remote","cgf":false},{"y":2023,"org":"UNDP","detail":"Batch 3","course":"Data Communication","when":"18 Sep – 13 Oct 2023","fmt":"Remote","cgf":false},{"y":2023,"org":"Ministry of Foreign Affairs","detail":"Sesdilu 75","course":"Persuasive Writing","when":"29 Aug – 26 Sep 2023","fmt":"","cgf":false},{"y":2023,"org":"Traveloka","detail":"Batch 1","course":"Narrative Alchemy","when":"29 & 31 Aug 2023","fmt":"","cgf":false},{"y":2023,"org":"Traveloka","detail":"Batch 2","course":"Narrative Alchemy","when":"24 & 26 Oct 2023","fmt":"","cgf":false},{"y":2023,"org":"Mekari","detail":"","course":"Business Report Writing","when":"19 Sep – 13 Oct 2023","fmt":"","cgf":false},{"y":2023,"org":"East Ventures","detail":"Batch 2","course":"Business Communication","when":"11 Sep – 6 Nov 2023","fmt":"","cgf":false},{"y":2023,"org":"East Ventures","detail":"Batch 3","course":"Business Communication","when":"14 Sep – 16 Nov 2023","fmt":"","cgf":false},{"y":2023,"org":"Serac Asia","detail":"Batch 1","course":"Business Report Writing","when":"12 Sep – 6 Oct 2023","fmt":"","cgf":false},{"y":2023,"org":"Serac Asia","detail":"Batch 2","course":"Business Report Writing","when":"12 Sep – 12 Oct 2023","fmt":"","cgf":false},{"y":2023,"org":"Kiroyan Partners","detail":"","course":"Business Report Writing","when":"20 Sep – 15 Nov 2023","fmt":"","cgf":false},{"y":2023,"org":"Marriott International","detail":"","course":"Content Writing and Other Stories","when":"17 Oct – 5 Dec 2023","fmt":"","cgf":false},{"y":2023,"org":"ENI Indonesia","detail":"","course":"Narrative Alchemy Bootcamp","when":"21–22 Dec 2023","fmt":"","cgf":false},{"y":2023,"org":"CPOPC","detail":"","course":"Storycraft Bootcamp for Business Excellence","when":"18–19 Dec 2023","fmt":"","cgf":false},{"y":2024,"org":"Ministry of Foreign Affairs","detail":"Sesdilu 76","course":"Storycraft for Persuasive Writing and Communication","when":"15 & 19 Mar 2024","fmt":"In person","cgf":false},{"y":2024,"org":"MedcoEnergi","detail":"","course":"From Insight to Impact: Storycraft for Business Communication","when":"20–21 Mar 2024","fmt":"In person","cgf":false},{"y":2024,"org":"BP Indonesia","detail":"","course":"Business Report Writing and Persuasive Communication","when":"22 May – 12 June 2024","fmt":"In person","cgf":false},{"y":2024,"org":"BP Indonesia","detail":"Top Talent I","course":"Communicate with Impact: Empowering Future Leaders Top Talent I","when":"4–25 July 2024","fmt":"In person","cgf":false},{"y":2024,"org":"BP Indonesia","detail":"Top Talent II","course":"Communicate with Impact: Empowering Future Leaders Top Talent II","when":"8–29 Aug 2024","fmt":"In person","cgf":false},{"y":2024,"org":"BP Indonesia","detail":"Power Writing","course":"Power Writing for Business","when":"4 Sep – 16 Oct 2024","fmt":"In person","cgf":false},{"y":2024,"org":"Ministry of Foreign Affairs","detail":"Sesdilu 77","course":"From Ideas to Impact: Speech and Concept Note Development","when":"15–16 Aug 2024","fmt":"In person","cgf":false},{"y":2024,"org":"NLR Indonesia","detail":"","course":"Mastering Report Writing and Development","when":"18–19 July 2024","fmt":"In person","cgf":false},{"y":2024,"org":"Austindo Nusantara Jaya","detail":"","course":"Storycraft for Strategic Narratives: Mastering Business Report Writing","when":"23 Aug – 10 Oct 2024","fmt":"Hybrid","cgf":false},{"y":2024,"org":"HSBC","detail":"","course":"Mastering Clear and Effective Writing","when":"18 Oct 2024","fmt":"In person","cgf":false},{"y":2024,"org":"Tiket.com","detail":"","course":"Content Writing and Development","when":"3–17 Sep 2024","fmt":"In person","cgf":false},{"y":2024,"org":"BASF Indonesia","detail":"","course":"Creative Thinking for Marketers","when":"5 Nov 2024","fmt":"In person","cgf":false},{"y":2024,"org":"AMINEF","detail":"","course":"Mastering Presentation Development and Delivery","when":"13–14 Nov 2024","fmt":"In person","cgf":false},{"y":2024,"org":"Beiersdorf Indonesia","detail":"","course":"Data and the Power of Persuasion in Healthcare Industry","when":"4 Dec 2024","fmt":"In person","cgf":false},{"y":2025,"org":"OCBC","detail":"","course":"Strategic Communication Skills for Leadership Support","when":"20,21,25 Feb 2025","fmt":"","cgf":false},{"y":2025,"org":"Kemitraan Indonesia","detail":"","course":"Communicating with Impact - On Writing and Presenting Report","when":"17 & 18 Feb 2025","fmt":"","cgf":false},{"y":2025,"org":"HBT","detail":"Batch 1","course":"Effective Writing and Critical Reading for Professionals Course","when":"4 Feb – 29 Apr 2025","fmt":"","cgf":false},{"y":2025,"org":"HBT","detail":"Batch 2","course":"Effective Writing and Critical Reading for Professionals Course","when":"7 Feb – 16 May 2025","fmt":"","cgf":false},{"y":2025,"org":"HBT","detail":"Dispute","course":"Strategic Business Writing for Legal Professionals Course - Dispute","when":"7 Feb – 22 Aug 2025","fmt":"","cgf":false},{"y":2025,"org":"British Embassy","detail":"","course":"Effective Press Release and Modern Media Release Writing","when":"4–5 Feb 2025","fmt":"","cgf":false},{"y":2025,"org":"Artotel Group","detail":"","course":"Content Writing Fundamentals for the Hospitality Industry","when":"23 Apr 2025","fmt":"","cgf":false},{"y":2025,"org":"Sun Life","detail":"","course":"CGF Model Seminar: The Hidden Structure of Clear Communication, A Thinking Model","when":"21 May 2025","fmt":"","cgf":true},{"y":2025,"org":"Henan Asset Management","detail":"","course":"Strategic Communications: Building Impactful Business Narratives","when":"11 June 2025 & Sep 2025","fmt":"","cgf":false},{"y":2025,"org":"RGE Indonesia","detail":"","course":"Strategic Communication Across Platform - From Captions to Compelling Narratives","when":"14–15 Apr 2025","fmt":"","cgf":false},{"y":2025,"org":"Sun Life Indonesia","detail":"","course":"The CGF Model Training: Dynamic Data Presentations and Humanizing A.I.","when":"17 July & 15 Oct 2025","fmt":"","cgf":true},{"y":2025,"org":"Sun Life Indonesia","detail":"","course":"The CGF Model: Proposal Writing","when":"13–14 Nov 2025","fmt":"","cgf":true},{"y":2025,"org":"Australian Embassy","detail":"Cohort 1","course":"Strategic Writing for Reports, Essays, and Business Correspondence","when":"10–11 June 2025","fmt":"","cgf":false},{"y":2025,"org":"Australian Embassy","detail":"Cohort 2","course":"Strategic Writing for Reports, Essays, and Business Correspondence","when":"8 & 17 Sep 2025","fmt":"","cgf":false},{"y":2025,"org":"Australian Embassy","detail":"Cohort 3","course":"Strategic Writing for Reports, Essays, and Business Correspondence","when":"22 & 29 Oct 2025","fmt":"","cgf":false},{"y":2025,"org":"The Jakarta Post","detail":"","course":"The CGF Training: Executive Clarity: Communicating with Precision, Ownership, and Impact","when":"17 Aug – 16 Sep 2025","fmt":"","cgf":true},{"y":2025,"org":"UNDP","detail":"","course":"The CGF Training: From Facts to Stories","when":"24, 25 Sep & 8 Oct 2025","fmt":"","cgf":true},{"y":2025,"org":"Zurich Indonesia","detail":"","course":"The CGF Training: Strategic Communication Alignment","when":"20 Oct 2025","fmt":"","cgf":true},{"y":2025,"org":"Standard Chartered","detail":"Technical Writing","course":"The CGF Model Training: Technical Writing","when":"26–27 Nov 2025","fmt":"","cgf":true},{"y":2025,"org":"Standard Chartered","detail":"Proposal Writing","course":"The CGF Training for Proposal Writing","when":"19 Dec 2025","fmt":"","cgf":true},{"y":2025,"org":"Austrade","detail":"Cohort 1","course":"The CGF Training for Content and Narrative Writing","when":"17 Dec 2025","fmt":"","cgf":true},{"y":2026,"org":"Austrade","detail":"Cohort 2","course":"The CGF Training for Content and Narrative Writing","when":"12 Jan 2026","fmt":"","cgf":true},{"y":2026,"org":"The Jakarta Post Group","detail":"","course":"The CGF Model: Leadership Communication","when":"12 Feb – 5 Mar 2026","fmt":"","cgf":true},{"y":2026,"org":"Sun Life Indonesia","detail":"","course":"The CGF Model: Data, Insights, and Stories","when":"14–15 Apr 2026","fmt":"","cgf":true},{"y":2026,"org":"RGE Indonesia","detail":"","course":"The CGF Model: Writing and Documentation","when":"22–23 Apr 2026","fmt":"","cgf":true},{"y":2026,"org":"OJK","detail":"","course":"The CGF Model: Strategic Persuasion – Making the Case: Data, Logic, Influence","when":"24 Jun 2026","fmt":"","cgf":true},{"y":2026,"org":"OJK","detail":"","course":"The CGF Model: Strategic Persuasion – Making the Case: Data, Logic, Influence","when":"26 June, 2 & 3 July 2026","fmt":"","cgf":true},{"y":2026,"org":"OJK","detail":"","course":"The CGF Model: From Data to Decision – Turning Information into Strategic Conversations","when":"26 June, 2 & 3 July 2026","fmt":"","cgf":true},{"y":2026,"org":"Tirta Nusa Buana","detail":"","course":"The CGF Model: Driving Clarity, Accountability and Alignment in Leadership","when":"20 & 21 July 2026","fmt":"","cgf":true},{"y":2026,"org":"MedcoEnergi","detail":"","course":"The CGF Model: Writing & Documentation","when":"12 Aug 2026","fmt":"","cgf":true},{"y":2026,"org":"BCA","detail":"","course":"The CGF Model: From Drafts to Direction","when":"15–16 Oct 2026","fmt":"","cgf":true},{"y":2026,"org":"BCA","detail":"","course":"The CGF Model: From Drafts to Direction","when":"18–19 Nov 2026","fmt":"","cgf":true},{"y":2026,"org":"Standard Chartered","detail":"","course":"The CGF Model: Pitch & Persuasion","when":"15 Sep, 10, 16, 26 Nov 2026","fmt":"","cgf":true},{"y":2026,"org":"DBS Indonesia","detail":"","course":"The CGF Model: Executive Writing Essentials","when":"8 Oct 2026","fmt":"","cgf":true}],"stats":{"cohorts":85,"orgs":43,"byYear":{"2023":37,"2024":14,"2025":21,"2026":13}}}</script>
 <script id="gal-data" type="application/json">[{"src": "assets/img/session-01.webp", "date": "2023-08-01"}, {"src": "assets/img/session-02.webp", "date": "2023-08-04"}, {"src": "assets/img/session-03.webp", "date": "2023-08-08"}, {"src": "assets/img/session-04.webp", "date": "2023-08-29"}, {"src": "assets/img/session-05.webp", "date": "2023-09-04"}, {"src": "assets/img/session-06.webp", "date": "2023-09-11"}, {"src": "assets/img/session-07.webp", "date": "2023-09-15"}, {"src": "assets/img/session-08.webp", "date": "2023-09-19"}, {"src": "assets/img/session-09.webp", "date": "2023-09-20"}, {"src": "assets/img/session-10.webp", "date": "2023-09-25"}, {"src": "assets/img/session-11.webp", "date": "2023-09-26"}, {"src": "assets/img/session-12.webp", "date": "2023-10-03"}, {"src": "assets/img/session-13.webp", "date": "2023-10-04"}, {"src": "assets/img/session-14.webp", "date": "2023-10-10"}, {"src": "assets/img/session-15.webp", "date": "2023-10-16"}]</script>
 <script>
-/* =====================================================================
-   CASE STUDIES: edit, add, reorder or remove entries here only.
-   The layout in the page never needs to change.
-   Each entry: id, programme, meta, context, involvement, approach,
-   evidence, outcome, capabilities.
-   Items are plain strings, links {text, href}, or placeholders
-   {placeholder: "what to add"}. Empty fields are hidden.
-   Set SHOW_PLACEHOLDERS to false to hide every placeholder before sharing.
-   ===================================================================== */
+/* Case studies based on documented experience and outcomes. */
 const SHOW_PLACEHOLDERS = false;
-const ROLE = "Training Coordinator at B/NDL Studios, covering the responsibilities this portfolio lists for the role: participants, facilitators, schedules, communication, live sessions, records and follow-up.";
 const CASE_STUDIES = [
   {
-    id: "nine-at-once",
-    programme: "Nine programmes in session at once",
-    meta: "20 September 2023, six organisations",
+    id: "education-sales",
+    programme: "From learning conversations to national sales achievement",
+    meta: "2019–2020 · 2,000+ leads · 700+ students · 50+ schools",
     context: [
-      "On 20 September 2023 the delivery log shows nine B/NDL Studios programmes in session at the same time, for six organisations: UNDP (Batches 2 and 3), the Ministry of Foreign Affairs (Sesdilu 75), Mekari, East Ventures (Batches 2 and 3), Serac Asia (Batches 1 and 2) and Kiroyan Partners.",
-      "The topics were Data Communication, Persuasive Writing, Business Report Writing and Business Communication."
+      "Education sales starts with understanding students’ learning challenges, motivations and family expectations. During a major academic-year campaign at Ruangguru, learning conversations opened a path to engaging prospective customers."
     ],
-    involvement: [ROLE, {placeholder: "Add which of these programmes you coordinated yourself, and what you personally handled on each."}],
+    involvement: [
+      "As a Field Education Consultant and later Senior Field Education Consultant, I conducted learning consultations, engaged students and schools, managed prospective-customer leads and supported customers through their decision-making process."
+    ],
     approach: [
-      "Every batch has its own entry in the log with its own dates, so runs under one client stay separate. East Ventures Batch 2 starts on 11 September and Batch 3 on 14 September. Serac Asia’s two batches both start on 12 September and end on different dates.",
-      "Starts range from 29 August to 20 September 2023 and ends from 22 September to 16 November, so the programmes overlapped instead of following one another.",
-      "Each programme follows the before, during and after routine described in “How a live programme is run”."
+      "Used educational webinars and learning-motivation sessions to establish relevance before introducing programmes.",
+      "Connected students’ learning challenges with relevant Ruangguru programmes.",
+      "Kept structured lead records and followed up consistently throughout the sales journey.",
+      "Adapted conversations to different student needs and customer concerns."
     ],
     evidence: [
-      {text: "Nine matching entries in the training log, searchable by client name", href: "#log"},
-      {text: "A live session frame dated 20 September 2023, in “Live delivery, on record”", href: "#sessions"}
+      "Educational webinar and school engagement activities.",
+      "Sales consultation and lead-management experience."
     ],
-    outcome: [{placeholder: "No result is recorded for this day. Add a verified outcome, such as attendance or client feedback, if you have one."}],
-    capabilities: ["Parallel scheduling", "Multi-batch coordination", "Delivery records"]
+    outcome: [
+      "Recognised as No. 1 National Best Sales during the academic-year campaign. Across education-sales work, managed 2,000+ prospective leads and engaged 700+ students across 50+ schools."
+    ],
+    capabilities: ["Consultative sales", "Customer engagement", "Lead conversion"]
   },
   {
-    id: "undp-data-communication",
-    programme: "UNDP, Data Communication",
-    meta: "Three batches in 2023, returned in 2025",
+    id: "sales-capability",
+    programme: "Scaling sales capability across 33 regions",
+    meta: "2020–2023 · 2,000+ Field Education Consultants · 33 regions",
     context: [
-      "UNDP took the Data Communication programme in three batches in 2023: Batch 1 from 1 to 25 August, Batch 2 from 29 August to 22 September and Batch 3 from 18 September to 13 October. The log records Batches 2 and 3 as remote.",
-      "UNDP returned in 2025 with From Facts to Stories, on 24 and 25 September and 8 October."
+      "A geographically distributed sales team needs practical learning resources and consistent guidance that can work across different customer situations and regional contexts."
     ],
-    involvement: [ROLE, {placeholder: "Add your specific role on the UNDP batches, for example who you liaised with and what you scheduled."}],
+    involvement: [
+      "After moving from frontline sales into Training & Development at Ruangguru, I supported Field Education Consultant capability development across Indonesia. I also served as Deputy Lead of the Sales Trainee Academy (STAR) and later became a Training Coordinator."
+    ],
     approach: [
-      "The three batches are logged separately, so one client and one programme title carry three entries, each with its own dates.",
-      "Batch 2 and Batch 3 overlapped between 18 and 22 September 2023, and both ran alongside other programmes in the log."
+      "Turned frontline sales experience into practical learning and mentoring resources.",
+      "Developed sales scripts, proposals and talking points for customer conversations.",
+      "Supported mentoring and capability development across multiple regions.",
+      "Coordinated trainer activities and monitored performance indicators for training operations."
     ],
-    evidence: [{text: "Four UNDP entries in the training log: three from 2023 and one from 2025", href: "#log"}],
-    outcome: ["UNDP is recorded as a returning client, in 2023 and again in 2025."],
-    capabilities: ["Multi-batch scheduling", "Overlapping runs", "Client continuity"]
+    evidence: [
+      "20+ sales scripts, proposals and talking points.",
+      "Sales Trainee Academy (STAR) and mentoring activities."
+    ],
+    outcome: [
+      "Supported capability development for 2,000+ Field Education Consultants across 33 regions."
+    ],
+    capabilities: ["Sales enablement", "Capability development", "Training operations"]
   },
   {
-    id: "mofa-intakes",
-    programme: "Ministry of Foreign Affairs, successive intakes",
-    meta: "Seven programmes, March 2023 to August 2024",
+    id: "customer-data",
+    programme: "Turning customer data into actionable opportunities",
+    meta: "2026–present · 2,500+ CRM leads · Five public course campaigns",
     context: [
-      "The log records seven programmes for Indonesia’s Ministry of Foreign Affairs. In 2023: Sesdilu 74 and Sesparlu 72, each in Batches A and B, and Sesdilu 75. In 2024: Sesdilu 76 and Sesdilu 77.",
-      "Topics moved from Persuasive Writing and Speechwriting and Storytelling in 2023 to storycraft and to speech and concept note development in 2024."
+      "A large customer database does not automatically create meaningful engagement. Public course campaigns need relevant audience selection, structured follow-up and communication that connects learning opportunities with customer needs."
     ],
-    involvement: [ROLE, {placeholder: "Add your specific role on the Ministry intakes, for example how batches were arranged with the client."}],
+    involvement: [
+      "As part of my Learning Data & Insights assignment at B/NDL Studios, I manage and organise CRM lead records, support audience selection and follow-up prioritisation, and contribute to public course campaign planning."
+    ],
     approach: [
-      "Batches A and B of Sesdilu 74 and of Sesparlu 72 are recorded with identical dates, so two groups ran over the same weeks under one programme title.",
-      "Sesdilu 74 and Sesparlu 72 overlapped from 11 to 13 April 2023, which put all four batches in session together.",
-      "The spring 2023 intakes are recorded as remote and the 2024 intakes as in person."
+      "Organised prospective-customer records around programme relevance and audience profiles.",
+      "Used previous interactions and engagement signals to support follow-up prioritisation.",
+      "Tracked campaign responses and customer interest across the pipeline.",
+      "Proposed concise outreach built around a customer problem, a relevant learning solution and a clear call to action.",
+      "Mapped the campaign process from database upkeep through audience selection, outreach, engagement tracking and prioritised follow-up."
     ],
-    evidence: [{text: "Seven Ministry of Foreign Affairs entries in the training log", href: "#log"}],
-    outcome: ["The Ministry appears in the log for successive intakes across 2023 and 2024."],
-    capabilities: ["Cohort and batch coordination", "Remote and in-person delivery", "Repeat-client programmes"]
+    evidence: [
+      "Structured CRM database, campaign trackers and audience follow-up lists.",
+      "Proposed WhatsApp campaign messaging and HubSpot Academy Inbound Certification.",
+      "Public-course campaign artwork for The Architecture of Good Writing and We Need to Talk."
+    ],
+    workflow: [
+      {title: "Customer database", detail: "Organise and maintain customer records."},
+      {title: "Audience segmentation", detail: "Identify the relevant audience for each programme."},
+      {title: "Targeted outreach", detail: "Connect customer needs with learning opportunities."},
+      {title: "Engagement tracking", detail: "Record customer responses and interest."},
+      {title: "Follow-up prioritisation", detail: "Determine relevant next actions."}
+    ],
+    media: [
+      {src: "assets/img/work/architecture-of-good-writing.webp", alt: "The Architecture of Good Writing online workshop campaign poster", title: "The Architecture of Good Writing", detail: "Three online writing workshops · October–November 2026"},
+      {src: "assets/img/work/we-need-to-talk.webp", alt: "We Need to Talk workplace communication workshop campaign poster", title: "We Need to Talk", detail: "Three online sessions on difficult workplace conversations · October–November 2026"}
+    ],
+    outcome: [
+      "Managed and maintained 2,500+ CRM lead records across five public course programmes, supporting more structured audience targeting, outreach and follow-up."
+    ],
+    capabilities: ["CRM management", "Audience segmentation", "Customer intelligence"]
+  },
+  {
+    id: "learning-operations",
+    programme: "Managing learning experiences from end to end",
+    meta: "2023–present · 53 corporate programmes · 14 public courses · 1,000+ participants",
+    context: [
+      "Learning programmes involve multiple stakeholders, operational dependencies and communication needs. A consistent participant experience depends on coordination before, during and after delivery."
+    ],
+    involvement: [
+      "As a Training Coordinator at B/NDL Studios, I coordinate corporate and public learning programmes with clients, facilitators, participants and internal teams throughout the programme lifecycle."
+    ],
+    approach: [
+      "Before delivery, coordinate schedules, facilitator briefings, participant communication, learning materials and assessments.",
+      "During delivery, monitor implementation, attendance, participant engagement and operational requirements.",
+      "After delivery, coordinate evaluations, assessment follow-ups, reporting and outstanding client deliverables.",
+      "Maintain programme records and communicate dependencies across stakeholders."
+    ],
+    evidence: [
+      {text: "Training delivery log", href: "#log"},
+      "Programme schedules, operational trackers and participant and facilitator communications.",
+      "Assessment, evaluation and post-training documentation."
+    ],
+    outcome: [
+      "Coordinated 53 corporate training programmes and 14 public courses involving more than 1,000 participants across remote and in-person learning environments."
+    ],
+    capabilities: ["Programme operations", "Stakeholder coordination", "Participant experience"]
   },
   {
     id: "beyond-completion-rates",
-    programme: "Beyond Completion Rates",
-    meta: "Published essay on Medium",
-    context: ["Completion rates show who finished a programme and say little about what changed afterwards. The essay, “Beyond Completion Rates: Applying Sociological Research to Corporate L&D Analytics”, looks at how sociological research can sharpen the way corporate learning is measured."],
-    involvement: ["Author of the essay, published on Medium."],
+    programme: "Beyond satisfaction scores: turning feedback into learning insights",
+    meta: "2026–present · 100+ responses · Seven programmes · Seven client reports",
+    context: [
+      "Participant satisfaction scores are useful, but do not explain what participants learned, which challenges remain or how future programmes could improve."
+    ],
+    involvement: [
+      "As part of my Learning Data & Insights assignment at B/NDL Studios, I analyse training evaluation data and develop client-facing reports that connect participant feedback, facilitator observations and learning experiences."
+    ],
     approach: [
-      "Written as the analytical side of the delivery work: the log shows what was delivered, and the essay looks at how learning should be measured beyond completion.",
-      {placeholder: "Add the essay’s method and main argument in two or three sentences, taken from the text itself."}
+      "Combined quantitative evaluation scores with qualitative participant feedback.",
+      "Cross-referenced findings with facilitator feedback and programme observations.",
+      "Separated individual suggestions from recurring patterns.",
+      "Translated learning breakthroughs, engagement challenges and improvement opportunities into practical recommendations and learning reinforcement."
     ],
     evidence: [
-      {text: "The essay on Medium", href: "https://medium.com/@itsnaininurfaizah21/beyond-completion-rates-applying-sociological-research-to-corporate-l-d-analytics-d8e95880a150"},
-      {text: "The Writing section of this portfolio", href: "#writing"}
+      "Participant evaluation analysis, client-facing post-training reports and training insight reports.",
+      {text: "Beyond Completion Rates: Applying Sociological Research to Corporate L&D Analytics", href: "https://medium.com/@itsnaininurfaizah21/beyond-completion-rates-applying-sociological-research-to-corporate-l-d-analytics-d8e95880a150"}
     ],
-    outcome: ["Published on Medium."],
-    capabilities: ["Learning analytics", "Evaluation thinking", "Analytical writing"]
-  },
-  {
-    id: "next-case-study",
-    placeholder: true,
-    programme: "Your next case study",
-    meta: {placeholder: "Add the client or programme, dates and format."},
-    context: [{placeholder: "Two or three sentences on the programme and its setting. A programme run across Indonesia and a UK or US team would show the time-zone work."}],
-    involvement: [{placeholder: "The responsibilities you can support with records."}],
-    approach: [{placeholder: "How the work was organised, using only what is documented."}],
-    evidence: [{placeholder: "Records, screenshots, documents or published writing you can link to."}],
-    outcome: [{placeholder: "Only a verified result. Leave this out if there is none."}],
-    capabilities: []
+    outcome: [
+      "Analysed 100+ participant responses across seven learning programmes and produced seven client-facing reports with practical recommendations.",
+      "Published an essay on measuring learning beyond completion rates."
+    ],
+    capabilities: ["Learning analytics", "Customer insights", "Evaluation and research"]
   }
 ];
 </script>
@@ -1406,6 +1459,14 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* nav border */
 const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 8), {passive:true});
+
+/* roles popup */
+(() => {
+  const dlg = $('#roles-dialog');
+  document.querySelectorAll('.roles-trigger').forEach(button => button.addEventListener('click', () => dlg.showModal()));
+  dlg.querySelector('.role-close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', event => { if (event.target === dlg) dlg.close(); });
+})();
 
 /* contact buttons */
 (() => {
@@ -1497,10 +1558,12 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
     const body = !real.length ? '' : list ? `<ul class="items">${real.map(i => `<li>${one(i)}</li>`).join('')}</ul>` : real.map(i => `<p>${one(i)}</p>`).join('');
     return `<div><dt>${label}</dt><dd>${body}${holes}</dd></div>`;
   };
+  const workflow = steps => !steps || !steps.length ? '' : `<section class="case-workflow" aria-label="Customer engagement workflow"><h4>Customer and campaign workflow</h4><ol class="workflow-steps">${steps.map((step, i) => `<li><b>0${i + 1}</b><strong>${e(step.title)}</strong><span>${e(step.detail)}</span></li>`).join('')}</ol></section>`;
+  const media = items => !items || !items.length ? '' : `<section class="case-media" aria-label="Public course campaign examples"><h4>Campaign examples</h4><div class="case-media-grid">${items.map(item => `<figure><img src="${e(item.src)}" alt="${e(item.alt)}" loading="lazy" width="1760" height="2200"><figcaption><strong>${e(item.title)}</strong>${e(item.detail)}</figcaption></figure>`).join('')}</div></section>`;
   host.innerHTML = CASE_STUDIES.filter(c => SHOW_PLACEHOLDERS || !c.placeholder).map(c => {
     const meta = c.meta && (c.meta.placeholder ? ph(c.meta.placeholder) : `<p>${e(c.meta)}</p>`);
     const caps = (c.capabilities || []).length ? `<ul class="skills" aria-label="Capabilities shown">${c.capabilities.map(x => `<li>${e(x)}</li>`).join('')}</ul>` : '';
-    return `<article class="case" id="case-${e(c.id)}" aria-labelledby="h-${e(c.id)}"><div class="case-head"><h3 id="h-${e(c.id)}">${e(c.programme)}</h3>${meta || ''}</div><dl class="case-body">${FIELDS.map(f => row(f[1], c[f[0]], f[2])).join('')}</dl>${caps}</article>`;
+    return `<article class="case" id="case-${e(c.id)}" aria-labelledby="h-${e(c.id)}"><div class="case-head"><h3 id="h-${e(c.id)}">${e(c.programme)}</h3>${meta || ''}</div><dl class="case-body">${FIELDS.map(f => row(f[1], c[f[0]], f[2])).join('')}</dl>${workflow(c.workflow)}${media(c.media)}${caps}</article>`;
   }).join('');
 })();
 
@@ -1562,62 +1625,6 @@ const nav = $('#nav'); addEventListener('scroll', () => nav.classList.toggle('st
   document.querySelectorAll('[data-r],[data-b]').forEach(el => io.observe(el));
 })();
 $('#yr').textContent = new Date().getFullYear();
-
-/* Autoplay the opening film; entering reveals the portfolio. */
-(() => {
-  const intro = $('#intro');
-  const video = $('#intro-video');
-  const open = $('#intro-open');
-  if (!intro || !video || !open) return;
-
-  document.body.classList.add('intro-active');
-
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finishEntry = () => {
-    intro.classList.add('is-entering');
-    document.body.classList.add('motion-ready');
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      intro.classList.add('is-open');
-      intro.setAttribute('aria-hidden', 'true');
-      intro.removeAttribute('aria-modal');
-      document.body.classList.remove('intro-active');
-      if (reduced) video.pause();
-    }));
-  };
-
-  if (!reduced) {
-    intro.addEventListener('transitionend', event => {
-      if (event.propertyName === 'clip-path') video.pause();
-    });
-  }
-
-  open.addEventListener('click', () => {
-    if (open.disabled || intro.classList.contains('is-open')) return;
-    open.disabled = true;
-    const wasPaused = video.paused;
-    const playback = wasPaused ? video.play() : Promise.resolve();
-    playback.then(() => {
-      open.hidden = true;
-      if (wasPaused && !reduced) setTimeout(finishEntry, 900);
-      else finishEntry();
-    }).catch(error => {
-      open.disabled = false;
-      open.textContent = 'Tap to play film';
-      console.error('The portfolio intro video could not start.', error);
-    });
-  });
-
-  video.addEventListener('error', () => {
-    open.disabled = false;
-    open.textContent = 'Intro video unavailable';
-    console.error('The portfolio intro video failed to load.', video.error);
-  });
-
-  video.play().catch(error => {
-    if (error.name === 'NotAllowedError') open.textContent = 'Play film & enter';
-    else console.error('The portfolio intro video could not autoplay.', error);
-  });
-})();
 
 /* A brief blush mask marks internal editorial navigation. */
 (() => {
